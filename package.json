@@ -2,6 +2,7 @@
   "name": "z-notes",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ziemen4.github.io/z-notes",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -10,6 +11,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-markdown": "^9.0.1",
+    "react-router-dom": "^6.27.0",
     "react-scripts": "5.0.1",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
@@ -17,7 +19,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "git config --global commit.gpgSign false && gh-pages -d build && git config --global commit.gpgSign true",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

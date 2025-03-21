@@ -42,6 +42,14 @@
   --lineHeight-tight: 1.1;
   --lineHeight-normal: 1.5;
   --lineHeight-relaxed: 1.625;
+  --fontFamily-sans: "MontserratVariable", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  --fontFamily-serif: "Merriweather", "Georgia", Cambria, "Times New Roman",
+    Times, serif;
+  --font-body: var(--fontFamily-serif);
+  --font-heading: var(--fontFamily-sans);
   /* 1.200 Minor Third Type Scale */
   --fontSize-0: 0.833rem;
   --fontSize-1: 1rem;
@@ -57,6 +65,40 @@
   --color-heading: #1a202c;
   --color-heading-black: black;
   --color-accent: #d1dce5;
+  /* Light theme colors (default) */
+  --bg: #ffffff;
+  --textNormal: #2e353f;
+  --textTitle: #1a202c;
+  --textLink: #005b99;
+  --hr: hsla(0, 0%, 0%, 0.2);
+  --color-code-bg: #f5f7fa;
+  --color-code: #374151;
+  --color-blockquote-bg: #f8fafc;
+}
+
+.global-wrapper {
+  margin: var(--spacing-0) auto;
+  max-width: var(--maxWidth-wrapper);
+  padding: var(--spacing-10) var(--spacing-5);
+}
+
+
+/* Update these existing variables in your [data-theme="dark"] section */
+[data-theme="dark"] {
+  --bg: #0d1117;
+  --textNormal: #c9d1d9;
+  --textTitle: #f0f6fc;
+  --textLink: #77e1cd;
+  --hr: #3a4452;
+  --color-code-bg: #1f2937;
+  --color-code: #e5e7eb;
+  --color-blockquote-bg: #1a202c;
+  --color-primary: #77e1cd;
+  --color-text: #c9d1d9;
+  --color-text-light: #8b949e;
+  --color-heading: #f0f6fc;
+  --color-heading-black: #f0f6fc;
+  --color-accent: #3a4452;
 }
 
 /* HTML elements */
@@ -74,10 +116,43 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Update body styles */
 body {
   font-family: var(--font-body);
   font-size: var(--fontSize-1);
-  color: var(--color-text);
+  color: var(--textNormal);
+  background-color: var(--bg);
+  transition: color 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+/* Update link colors to use theme variables */
+a {
+  color: var(--textLink);
+}
+
+/* Add styles for code blocks in dark mode */
+:not(pre) > code {
+  background-color: var(--color-code-bg);
+  color: var(--color-code);
+}
+
+/* Update blockquote for dark mode */
+blockquote {
+  background-color: var(--color-blockquote-bg);
+  border-left-color: var(--textLink);
+  color: var(--color-text-light);
+}
+
+/* Add these to your existing styles */
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.theme-toggle {
+  transition: all 0.2s ease-out;
 }
 
 footer {

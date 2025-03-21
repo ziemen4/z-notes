@@ -1,9 +1,9 @@
 {
-  "name": "Zk-Notes",
+  "name": "Z Notes",
   "private": true,
-  "description": "ZK study group notes by Breads",
+  "description": "Z Notes",
   "version": "0.1.0",
-  "author": "Breads",
+  "author": "Ziemann",
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
@@ -28,13 +28,13 @@
     "react-dom": "^18.1.0"
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "prettier": "^2.8.8"
   },
   "keywords": [
     "gatsby"
   ],
   "license": "0BSD",
-
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -42,6 +42,8 @@
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "deploy": "source .env && gatsby build --prefix-paths && gh-pages -d public --repo https://${GH_TOKEN}@github.com/ziemen4/z-notes.git"
+
   }
 }

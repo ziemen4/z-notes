@@ -9,17 +9,18 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `ZK Study Group Notes`,
+    title: `Z-Notes`,
     author: {
-      name: `Breads`,
+      name: `Ziemann`,
       summary: ``,
     },
-    description: `Notes on Proofs, Arguments, and Zero-Knowledge by Justin Thaler`,
+    description: `Notes on Crytopgrahy, AI and other stuff`,
     // siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
     social: {
       twitter: ``,
     },
   },
+  pathPrefix: "/z-notes", // Add this line - should match your repository name
   plugins: [
     `gatsby-plugin-image`,
     {
@@ -126,7 +127,7 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/profile-pic.jpeg`, // This path is relative to the root of the site.
       },
     },
   ],

@@ -1,10 +1,13 @@
-// custom typefaces
 import "@fontsource-variable/montserrat"
 import "@fontsource/merriweather"
-// normalize CSS across browsers
 import "./src/normalize.css"
-// custom CSS styles
-import "./src/style.css"
-
-// Highlighting for code blocks
+import "./src/style.css"  // This must be correctly referenced
 import "prismjs/themes/prism.css"
+
+// Wrap your app with the ThemeProvider (from layout.js in your case)
+import * as React from 'react'
+import { ThemeProvider } from './src/components/layout'
+
+export const wrapRootElement = ({ element }) => (
+  <ThemeProvider>{element}</ThemeProvider>
+)

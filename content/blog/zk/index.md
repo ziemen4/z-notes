@@ -1,8 +1,9 @@
----  
+---
 title: Zero Knowledge Proof of Exploit
-date: "2025-03-30T09:27:45.934Z"  
+date: "2025-03-30T09:27:45.934Z"
 description: "An open protocol for proving exploits using ZK proofs"
----  
+---
+
 # Trustless Bug Bounties with zkpoex: Proving Exploits without Revealing Them
 
 ## Introduction
@@ -24,12 +25,7 @@ A trustless solution would level the playing field between attackers and ethical
 This addresses the described problems, as now a whitehat can submit a cryptographic proof showing a contract is exploitable without revealing exploit details. Once verified, the bounty can be automatically paid. This approach benefits both parties:
 
 - Whitehats have assurance they will receive immediate rewards upon proof verification.
-    
 - Teams can directly fix the identified exploit without needing further coordination. Details remain confidential, ensuring discreet resolution.
-    
-
-  
-  
 
 ## Introducing zkpoex: Zero-Knowledge Proof of Exploit
 
@@ -37,7 +33,7 @@ zkpoex began as a proof-of-concept and won the ETHDenver 2023 hackathon. At its 
 
 To achieve this, zkpoex leverages the power of ZKPs, cryptographic proofs allowing anyone to prove a statement is true without revealing sensitive information. In our context, the prover proves the statement:
 
- “I know specific calldata that, when executed, violates the contract’s intended security guarantees.”
+“I know specific calldata that, when executed, violates the contract’s intended security guarantees.”
 
 To prove this statement, the prover generates a cryptographic proof called a Succinct Non-Interactive Argument of Knowledge (zkSNARK). The “zk” prefix indicates the SNARK uses the “zero-knowledge” property, disclosing no information about the calldata.
 
@@ -57,12 +53,8 @@ Some may notice these cases challenge the premise of avoiding unfounded claims, 
 
 In summary, zkpoex handles two main vulnerability types:
 
-- **Exploits**: Clear violations of existing conditions (program specification).  
-      
-    
-- **Missing Conditions**: Vulnerabilities resulting from incomplete specifications.  
-      
-    
+- **Exploits**: Clear violations of existing conditions (program specification).
+- **Missing Conditions**: Vulnerabilities resulting from incomplete specifications.
 
 ## How zkpoex Works: Simulating an Attack in Zero Knowledge
 
@@ -70,28 +62,16 @@ Behind the scenes, zkpoex employs a zero-knowledge virtual machine (zkVM) to sim
 
 A simplified step-by-step overview:
 
-1. Setup: Whitehat obtains contract bytecode, a valid state, and calldata that produces an invalid transition (relative to the program specification).  
-      
-    
-2. Simulating the Exploit: The zkVM hosts an Ethereum-like environment, executing the exploit transaction exactly as if it should occur on-chain. It checks the resulting state of this simulation against the program specification to detect the exploit.  
-      
-    
-3. Detecting the Exploit: If no exploit is found, no conditions are violated, and the simulation fails. If successful, it means an exploit was identified.  
-      
-    
-4. Proof Generation: After execution, zkpoex generates a ZKP stating, "a private exploit exists causing the contract to violate its specification."  
-      
-    
-5. Proof Submission & Verification: This proof is submitted on-chain, verified by a verifier contract. If valid, the contract confirms the vulnerability without ever seeing exploit details.  
-      
-    
-6. Automatic Actions: Verified proofs immediately trigger automatic bounty payouts and defensive measures like pausing vulnerable contracts.  
-      
-    
+1. Setup: Whitehat obtains contract bytecode, a valid state, and calldata that produces an invalid transition (relative to the program specification).
+2. Simulating the Exploit: The zkVM hosts an Ethereum-like environment, executing the exploit transaction exactly as if it should occur on-chain. It checks the resulting state of this simulation against the program specification to detect the exploit.
+3. Detecting the Exploit: If no exploit is found, no conditions are violated, and the simulation fails. If successful, it means an exploit was identified.
+4. Proof Generation: After execution, zkpoex generates a ZKP stating, "a private exploit exists causing the contract to violate its specification."
+5. Proof Submission & Verification: This proof is submitted on-chain, verified by a verifier contract. If valid, the contract confirms the vulnerability without ever seeing exploit details.
+6. Automatic Actions: Verified proofs immediately trigger automatic bounty payouts and defensive measures like pausing vulnerable contracts.
 
 ### Encryption for Confidential Submissions
 
-To increase security, zkpoex supports encrypted exploit details. The whitehat encrypts exploit calldata with the project's public key, submitting this ciphertext alongside the cryptographic proof. Only the project’s security team can decrypt details after the bounty is securely paid out. While encryption greatly enhances confidentiality, it adds significant overhead in zkVM environments, and thus remains an active research area.d in zkVM environments. This area is currently under active research to find efficient solutions.
+To increase security, zkpoex supports encrypted exploit details. The whitehat encrypts exploit calldata with the project's public key, submitting this ciphertext alongside the cryptographic proof. Only the project’s security team can decrypt details after the bounty is securely paid out. While encryption greatly enhances confidentiality, it adds significant overhead in zkVM environments, and thus remains in active research. This area is currently under active research to find efficient solutions.
 
 ## Challenges and Considerations
 
@@ -105,17 +85,11 @@ While the idea of trustless bug bounties is powerful, zkpoex faces several pract
 
 **Handling Missing Conditions**: Handling missing conditions comes with several challenges:
 
-- The first challenge is avoiding unnecessary claims of conditions to projects. Although this is largely mitigated today because malicious parties must create a ZKP (which is computationally expensive), we believe that future zkVM efficiency improvements could make this an issue again.  
-      
-    
-- The second challenge is effectively enforcing project payouts. Since missing conditions were not defined in the program specification, they cannot be easily categorized, making automatic payouts impossible.  
-      
-    To address this, ongoing research explores solutions such as implementing a VDF-like system or partially breakable encryption of the encrypted calldata. These mechanisms could enforce the team to act if the condition reveals an actual exploit, ensuring at least a minimum payout for such cases. Determining appropriate payouts remains challenging, however, as assessing the scope of the exploit is difficult.  
-      
-    Another possibility includes integrating a dispute resolution system such as [Kleros](https://kleros.io/), which could help categorize vulnerabilities, enabling a fair solution between the prover and the team regarding payout.  
-      
-    In the worst case, enforcing a minimum payout for missing conditions could ensure that the prover is never left empty-handed.
-    
+- The first challenge is avoiding unnecessary claims of conditions to projects. Although this is largely mitigated today because malicious parties must create a ZKP (which is computationally expensive), we believe that future zkVM efficiency improvements could make this an issue again.
+- The second challenge is effectively enforcing project payouts. Since missing conditions were not defined in the program specification, they cannot be easily categorized, making automatic payouts impossible.
+  To address this, ongoing research explores solutions such as implementing a VDF-like system or partially breakable encryption of the encrypted calldata. These mechanisms could enforce the team to act if the condition reveals an actual exploit, ensuring at least a minimum payout for such cases. Determining appropriate payouts remains challenging, however, as assessing the scope of the exploit is difficult.
+  Another possibility includes integrating a dispute resolution system such as [Kleros](https://kleros.io/), which could help categorize vulnerabilities, enabling a fair solution between the prover and the team regarding payout.
+  In the worst case, enforcing a minimum payout for missing conditions could ensure that the prover is never left empty-handed.
 
 ## Current Status and Roadmap
 

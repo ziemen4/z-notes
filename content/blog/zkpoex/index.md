@@ -1,10 +1,8 @@
 ---
-title: Zero Knowledge Proof of Exploit
+title: "Trustless Bug Bounties with zkpoex: Proving Exploits without Revealing Them"
 date: "2025-03-30T09:27:45.934Z"
 description: "An open protocol for proving exploits using ZK proofs"
 ---
-
-# Trustless Bug Bounties with zkpoex: Proving Exploits without Revealing Them
 
 ## Introduction
 

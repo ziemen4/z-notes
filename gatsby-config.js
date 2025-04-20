@@ -15,12 +15,13 @@ module.exports = {
       summary: ``,
     },
     description: `Notes on Crytopgrahy, AI and other stuff`,
+    siteUrl: 'http://ziemann.me',
     // siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
     social: {
       twitter: ``,
     },
   },
-  pathPrefix: "/z-notes", // Add this line - should match your repository name
+  // pathPrefix: "/z-notes", // Add this line - should match your repository name
   plugins: [
     `gatsby-plugin-image`,
     {

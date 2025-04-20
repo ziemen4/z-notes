@@ -4,7 +4,7 @@ date: "2025-04-18T09:27:45.934Z"
 description: "An open protocol for proving exploits using ZK proofs"
 ---
 
-*Special thanks to [Abhi](https://www.thebookofzk.xyz/), [Galaxela](https://github.com/Alessandro-Cavaliere) and Julie for feedback*
+*Special thanks to [Abhi](https://x.com/thebookofzk), [Galaxela](https://github.com/Alessandro-Cavaliere) and Julie for feedback*
 ## Introduction
 
 Smart contract security is crucial for the future of decentralized systems. In 2024 alone, over $2 billion was lost to hacks and exploits, highlighting the severe consequences of security vulnerabilities. As the crypto ecosystem grows, the potential impact of these exploits becomes even more significant.

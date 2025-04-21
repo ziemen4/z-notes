@@ -83,7 +83,6 @@
   --maxWidth-3xl: 48rem;
   --maxWidth-4xl: 56rem;
   --maxWidth-full: "100%";
-  --maxWidth-wrapper: var(--maxWidth-4xl);
   --spacing-px: "1px";
   --spacing-0: 0;
   --spacing-1: 0.25rem;
@@ -164,13 +163,6 @@
   --border: #e5e5e5;
   --accent: #000;
 }
-
-.global-wrapper {
-  margin: var(--spacing-0) auto;
-  max-width: var(--maxWidth-wrapper);
-  padding: var(--spacing-10) var(--spacing-5);
-}
-
 
 /* Update these existing variables in your [data-theme="dark"] section */
 [data-theme="dark"] {
@@ -418,7 +410,7 @@ a:focus {
 .global-wrapper {
   margin: var(--spacing-0) auto;
   max-width: var(--maxWidth-wrapper);
-  padding: var(--spacing-10) var(--spacing-5);
+  padding: var(--spacing-10) var(--spacing-32);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -538,8 +530,8 @@ site-header {
 
 .site-main {
   flex: 1 0 auto;
-  max-width: 860px;
   padding: 6rem 0rem 4rem;
+  margin: 0 auto;
 }
 
 .site-footer {

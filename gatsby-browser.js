@@ -1,12 +1,11 @@
-import "@fontsource-variable/montserrat"
-import "@fontsource/merriweather"
-import "./src/normalize.css"
-import "./src/style.css"  // This must be correctly referenced
-import "prismjs/themes/prism.css"
+// gatsby-browser.js
+import * as React from "react"
+import { ThemeProvider } from "./src/components/layout"
 
-// Wrap your app with the ThemeProvider (from layout.js in your case)
-import * as React from 'react'
-import { ThemeProvider } from './src/components/layout'
+import "@fontsource/merriweather"     /* keep if you still need Merriweather */
+import "./src/normalize.css"
+import "./src/style.css"
+import "prismjs/themes/prism.css"
 
 export const wrapRootElement = ({ element }) => (
   <ThemeProvider>{element}</ThemeProvider>

@@ -23,6 +23,7 @@
     "gatsby-transformer-remark": "^6.13.1",
     "gatsby-transformer-sharp": "^5.13.1",
     "katex": "^0.13.24",
+    "lucide-react": "^0.503.0",
     "prismjs": "^1.29.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
@@ -44,6 +45,5 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "deploy": "source .env && gatsby build --prefix-paths && gh-pages -d public --repo https://${GH_TOKEN}@github.com/ziemen4/z-notes.git"
-
   }
 }

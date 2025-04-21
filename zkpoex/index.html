@@ -40,7 +40,7 @@
 </li>
 </ul>
 <h2>How zkpoex Works: Simulating an Attack in Zero Knowledge</h2>
-<p>Behind the scenes, zkpoex employs a zero-knowledge virtual machine (zkVM) to simulate attacks and generate cryptographic proofs. Currently, zkpoex uses <a href="https://dev.risczero.com/api/zkvm/">RISC Zero’s zkVM</a>, a general-purpose zkVM based on the RISC-V architecture.</p>
+<p>Behind the scenes, zkpoex employs both an Ethereum Virtual Machine (EVM) interpreter and a zero-knowledge virtual machine (zkVM) to simulate attacks and generate cryptographic proofs. Currently, zkpoex uses <a href="https://github.com/rust-ethereum/evm">Rust EVM</a> as the interpreter and <a href="https://dev.risczero.com/api/zkvm/">RISC Zero’s zkVM</a>, a general-purpose zkVM based on the RISC-V architecture.</p>
 <p>Here’s a simplified step-by-step overview:</p>
 <ol>
 <li>

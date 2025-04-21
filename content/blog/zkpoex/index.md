@@ -63,7 +63,7 @@ In summary, zkpoex addresses two main types of vulnerabilities:
 
 ## How zkpoex Works: Simulating an Attack in Zero Knowledge
 
-Behind the scenes, zkpoex employs a zero-knowledge virtual machine (zkVM) to simulate attacks and generate cryptographic proofs. Currently, zkpoex uses [RISC Zero’s zkVM](https://dev.risczero.com/api/zkvm/), a general-purpose zkVM based on the RISC-V architecture.
+Behind the scenes, zkpoex employs both an Ethereum Virtual Machine (EVM) interpreter and a zero-knowledge virtual machine (zkVM) to simulate attacks and generate cryptographic proofs. Currently, zkpoex uses [Rust EVM](https://github.com/rust-ethereum/evm) as the interpreter and [RISC Zero’s zkVM](https://dev.risczero.com/api/zkvm/), a general-purpose zkVM based on the RISC-V architecture.
 
 Here’s a simplified step-by-step overview:
 

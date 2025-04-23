@@ -166,7 +166,7 @@
 /* Update these existing variables in your [data-theme="dark"] section */
 [data-theme="dark"] {
   --bg: #0d1117;
-  --textNormal: #c9d1d9;
+  --textNormal: #fffefa;
   --textTitle: #f0f6fc;
   --textLink: #77e1cd;
   --hr: #3a4452;
@@ -523,7 +523,7 @@ site-header {
 }
 
 .site-nav a.active {
-  border-bottom: 2px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
 }
 
 
@@ -559,7 +559,7 @@ site-header {
 
 .posts-list__item {
   padding: 1.5rem 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--border);
 }
 
 .posts-list__title {

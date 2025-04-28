@@ -4,7 +4,7 @@ date: "2025-04-18T09:27:45.934Z"
 description: "An open protocol for proving exploits using ZK proofs"
 ---
 
-*Special thanks to [Abhi](https://x.com/thebookofzk), [Galaxela](https://github.com/Alessandro-Cavaliere) and Julie for feedback*
+*Special thanks to [Abhi](https://x.com/thebookofzk), [Galexela](https://github.com/Alessandro-Cavaliere) and Julie for feedback*
 ## Introduction
 
 Smart contract security is crucial for the future of decentralized systems. In 2024 alone, over $2 billion was lost to hacks and exploits, highlighting the severe consequences of security vulnerabilities. As the crypto ecosystem grows, the potential impact of these exploits becomes even more significant.
@@ -30,7 +30,7 @@ This solution elegantly addresses the previous problems. *Whitehats* can now sub
 
 zkpoex originally began as a proof-of-concept and won the [ETHDenver 2023 hackathon](https://risczero.com/blog/zkpoex). This project, done by [zkoranges](https://github.com/zkoranges) and [federava](https://github.com/federava)  though very innovative, was a PoC that was not yet generalizable as a tool to prove arbitrary exploits.
 
-Together with [galaxela](https://github.com/Alessandro-Cavaliere) we enhanced this proof of concept into a richer project which can be used by both *whitehats* and project owners in order to participate in this protocol.
+Together with [galexela](https://github.com/Alessandro-Cavaliere) we enhanced this proof of concept into a richer project which can be used by both *whitehats* and project owners in order to participate in this protocol.
 
 At its core, zkpoex allows a *whitehat* (the prover) to convincingly demonstrate the exploitability of a smart contract to a project (the verifier) without revealing any specific exploit details. To accomplish this, zkpoex uses ZKPs, cryptographic proofs that verify a statement's truth without revealing sensitive information. In this context, the proven statement is:
 

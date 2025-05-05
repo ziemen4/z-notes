@@ -594,16 +594,47 @@ site-header {
 /* ───── header controls ───── */
 .header-controls { display: flex; align-items: center; gap: 1rem; }
 
-/* hamburger base */
-.hamburger { display: none; width: 24px; height: 24px; background: none; border: none; padding: 0; cursor: pointer; }
-.hamburger span,
+/* ----- hamburger anatomy: one <span> inside the <button> ----- */
+.hamburger {
+  display: none;                 /* still hidden until mobile */
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--textNormal);
+  appearance: none;
+}
+[data-theme="dark"] .hamburger { color: #fff; }
+
+/* middle bar */
+.hamburger span {
+  position: relative;            /* anchor for ::before/::after */
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transition: background .2s ease;
+}
+
+/* top & bottom bars */
 .hamburger span::before,
-.hamburger span::after { content: ""; display: block; width: 100%; height: 2px; background: currentColor; transition: transform .2s, opacity .2s; }
-.hamburger span::before { position: relative; top: -6px; }
-.hamburger span::after  { position: relative; top:  4px; }
-.hamburger.open span { background: transparent; }
-.hamburger.open span::before { transform: translateY(6px) rotate(45deg); }
-.hamburger.open span::after  { transform: translateY(-6px) rotate(-45deg); }
+.hamburger span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transition: transform .2s ease;
+}
+.hamburger span::before { top: -8px; }   /* distance between lines */
+.hamburger span::after  { top:  8px; }
+/* X-state */
+.hamburger.open span       { background: transparent; }
+.hamburger.open span::before { transform: translateY(8px)  rotate(45deg); }
+.hamburger.open span::after  { transform: translateY(-8px) rotate(-45deg); }
 
 /* desktop nav */
 .site-header__inner { display: flex; align-items: center; }

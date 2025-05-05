@@ -9,6 +9,7 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 
 // Define the template for blog post
 const blogPost = path.resolve(`./src/templates/blog-post.js`)
+const draftTemplate = path.resolve(`./src/templates/draft.js`)
 
 /**
  * @type {import('gatsby').GatsbyNode['createPages']}
@@ -19,7 +20,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Get all markdown blog posts sorted by date
   const result = await graphql(`
     {
-      allMarkdownRemark(sort: { frontmatter: { date: ASC } }, limit: 1000) {
+      allMarkdownRemark(
+        sort: { frontmatter: { date: ASC } }
+        limit: 1000
+        filter: { fields: { slug: { ne: null } } }
+      ) {
         nodes {
           id
           fields {
@@ -60,6 +65,37 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       })
     })
   }
+
+  const draftResult = await graphql(`
+    {
+      allMarkdownRemark(
+        filter: { fields: { draftSlug: { ne: null } } }
+      ) {
+        nodes {
+          id
+          fields {
+            draftSlug
+            draftUUID
+          }
+        }
+      }
+    }
+  `)
+
+  if (draftResult.errors) {
+    reporter.panicOnBuild(`Error loading draft posts`, draftResult.errors)
+    return
+  }
+
+  draftResult.data.allMarkdownRemark.nodes.forEach(node => {
+    const pagePath = `/draft${node.fields.draftSlug}`
+  
+    createPage({
+      path: pagePath,
+      component: draftTemplate,
+      context: { id: node.id },
+    })
+  })
 }
 
 /**
@@ -69,13 +105,31 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
+    const fileNode = getNode(node.parent)
+    const source = fileNode.sourceInstanceName
 
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
+    if (source === `blog`) {
+      // your existing slug logic
+      const slug = createFilePath({ node, getNode, basePath: `content/blog` })
+      createNodeField({ name: `slug`, node, value: slug })
+    }
+
+    if (source === `draft`) {
+      // build a draft-only slug and pull out the UUID folder name
+      const draftPath = createFilePath({ node, getNode, basePath: `content/draft` })
+      const [, uuid] = draftPath.split(`/`).filter(Boolean)
+
+      createNodeField({
+        node,
+        name: `draftSlug`,
+        value: draftPath,
+      })
+      createNodeField({
+        node,
+        name: `draftUUID`,
+        value: uuid,
+      })
+    }
   }
 }
 
@@ -120,6 +174,8 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type Fields {
       slug: String
+      draftSlug: String    # ← newly added
+      draftUUID: String    # ← newly added
     }
   `)
 }

@@ -6,7 +6,6 @@ description: "A brief note on how verifiable computation is essential for future
 
 ### Introduction
 Recent advances in both [programmable cryptography](https://0xparc.org/blog/programmable-cryptography-1) and [AI](https://ourworldindata.org/grapher/test-scores-ai-capabilities-relative-human-performance) may appear unrelated at first glance, but there is a clear overlap between these areas. In particular, tools in programmable cryptography, enabling privacy and verifiability will play an important role in how we manage what AI systems do.
-
 In particular, programmable cryptography offers two key capabilities:
 
 1. **Private computation**: Allows an external party to execute a computation on your data without learning anything about the data itself.
@@ -53,7 +52,6 @@ On the other hand, modern large-scale models (such as today's LLMs) do not have 
 
 ### Using zk-SNARKs for alignment verification
 Recent [research](https://arxiv.org/pdf/2402.02675) (and the main catalyst for this post) has been looking for answers on the verifiability of AI systems. Specifically, on how to use SNARKs to verify the behaviour of machine learning models, even when those models are closed-source.
-
 In this paper, the authors propose the use of *benchmarks* and *proofs of inference* (proving a certain model performed the computation).
 
 >*"The goal of this work is to remove the need for the public or an end user to trust the model provider. The zkSNARKs enable verification that computational work with a model with weights $H(W)$ occurred, that it produced a given benchmark, and that it was used for a specific inference that is challenged"* [Verifiable evaluations of machine learning models using zkSNARKs](https://arxiv.org/pdf/2402.02675)
@@ -88,7 +86,6 @@ Well, based on what we discussed, perhaps we could create a dynamic benchmark ma
 Perhaps a safer approach would be having open-source models, which can potentially simplify the process of understanding behaviour by using things like [mechanistic interpretability ](https://www.transformer-circuits.pub/2022/mech-interp-essay)Though mandatory open-source models may seem to hinder competition, we are still early to know [what the right approach may be](https://about.fb.com/news/2024/07/open-source-ai-is-the-path-forward/) 
 
 In an ideal future where proof generation becomes almost instantaneous, every robot action could be accompanied by a SNARK. Verifying each proof would ensure compliance with alignment constraints, reducing the risk of unsafe or unintended behaviour. This process could be the core process that any robot should have, and all security aspects should be linked with protecting it.
-
 If this actually works somewhat well, malicious attacks such as model impersonation or model hacking (which could lead to inappropriate or unsafe behaviour), would not be possible, though there is always an attack surface for the core process itself to be hacked.
 
 Despite the highly speculative nature (and perhaps complete nonsense) of this last section, it illustrates how verifiable computation will play a pivotal role in the responsible deployment of AI systems in the future.

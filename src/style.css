@@ -693,3 +693,10 @@ site-header {
   position: relative;   /* allows absolute-positioned nav to align to it */
 }
 
+
+/* centre caption that follows a gatsby-remark image */
+.gatsby-resp-image-wrapper + em {
+  display: block;          /* caption takes full line */
+  text-align: center;      /* centred under the image */
+  margin: 0.5rem 0 1.5rem; /* tweak spacing as you like */
+}

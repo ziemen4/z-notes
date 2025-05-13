@@ -3,8 +3,9 @@ title: "AI alignment through programmable cryptography"
 date: "2025-05-12T09:27:45.934Z"  
 description: "A brief note on how verifiable computation is essential for future AI systems"
 ---
+*Special thanks to Julie for feedback*
 
-### Introduction
+## Introduction
 Recently, there have been huge advancements both in [programmable cryptography](https://0xparc.org/blog/programmable-cryptography-1) and [AI](https://ourworldindata.org/grapher/test-scores-ai-capabilities-relative-human-performance). These areas may appear unrelated at first glance, but there is a clear overlap between them. In particular, tools in programmable cryptography, which enable privacy and verifiability, will play an important role in how we manage what AI systems do. Two key capabilities that arise in the world of cryptography and can help us achieve that are:
 
 1. **Private computation**: Allows an external party to execute a computation on your data without learning anything about the data itself.
@@ -22,7 +23,7 @@ There are two relevant parts to this question:
 
 In other words, we are looking to see how _aligned_ the system is (how it should behave) with respect to some objective (its expected behaviour).
 
-### Programmable Cryptography
+## Programmable Cryptography
 Here, I will be adopting the definition of this [article](https://0xparc.org/blog/programmable-cryptography-1) I made reference to before.
 
 >"We use the term “programmable cryptography” to refer to a second generation of cryptographic primitives that are becoming practical today. The defining feature of these primitives is that they are far more flexible than first-generation cryptography: they allow us to perform general-purpose computation inside or on top of cryptographic protocols." [Programmable Cryptography](https://0xparc.org/blog/programmable-cryptography-1)
@@ -36,7 +37,7 @@ In particular, a SNARK is an argument (a type of proof) enabling a prover to pro
 This quote should give you some idea of where we are headed here, in fact, there is a powerful system (the AI system) and we want to somehow be able to verify, using much weaker systems, that it is behaving as we expect it to!
 Thus, we are interested in something known as *AI alignment* (which we will talk about next). This whole area of research, widely known as [zkML](https://opengradient.medium.com/a-gentle-introduction-to-zkml-8049a0e10a04), is advancing rapidly by merging cryptography and AI.
 
-### AI Alignment
+## AI Alignment
 AI alignment is [defined](https://www.amazon.com/Artificial-Intelligence-A-Modern-Approach/dp/0134610997) with respect to an _objective_. If the AI system advances towards it, we say that it is **aligned**, while if it deviates from it we say it is pursuing an unintended objective.
 Different AI systems can have different goals. A system such as [AlphaZero](https://deepmind.google/discover/blog/alphazero-shedding-new-light-on-chess-shogi-and-go/) must win in the game of Go, while others like [AlphaProof](https://deepmind.google/discover/blog/ai-solves-imo-problems-at-silver-medal-level/) are trained on formal problems and their objective is to correctly derive a proof.
 
@@ -47,7 +48,7 @@ When objectives are well-defined, it is simpler to try to understand when an AI 
 
 On the other hand, modern large-scale models (such as today's LLMs) do not have such neatly defined objectives. Their _alignment_ emerges from the training process, (ie learning to be a helpful assistant), but this doesn't mean that their behaviour will be predictable for some [out of distribution input](https://www.holisticai.com/red-teaming/chatgpt-4-5-jailbreaking-red-teaming). As AI systems assume roles once performed by humans, the incentive to verify their behavior grows ever stronger.
 
-### Using zk-SNARKs for alignment verification
+## Using zk-SNARKs for alignment verification
 Recent [research](https://arxiv.org/pdf/2402.02675) (and the main catalyst for this post) has been looking for answers on the verifiability of AI systems. Specifically, on how to use SNARKs to verify the behaviour of machine learning models, even when those models are closed-source.
 In this paper, the authors propose the use of *benchmarks* and *proofs of inference* (proving a certain model performed the computation).
 

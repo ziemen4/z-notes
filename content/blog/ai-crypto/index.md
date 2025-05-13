@@ -14,7 +14,7 @@ Recently, there have been significant advances both in [programmable cryptograph
 ![0xPARC-programmable-cryptography-tree.png](0xPARC-programmable-cryptography-tree.png)
 *A simplified tree of cryptographic primitives. Source: [programmable-cryptography](https://0xparc.org/blog/programmable-cryptography-1)*
 
-AI systems excel at narrowly scoped tasks and are gradually tackling [broader challenges](https://contextual.ai/blog/plotting-progress-in-ai/) such as prediction and reasoning. These systems do not follow a single, predetermined algorithm, but rather learn from data, producing behaviour that may be far from trivial to interpret. The _emergence_ of behaviour is of increasing interest as AI takes over more and more important tasks, its [explainability](https://www.ibm.com/think/topics/explainable-ai) is an active area of research. 
+AI systems excel at narrowly scoped tasks and are gradually tackling [broader challenges](https://contextual.ai/blog/plotting-progress-in-ai/) such as prediction and reasoning. These systems do not follow a single, predetermined algorithm, but rather learn from data, producing behaviour that may be far from trivial to interpret. The _emergence_ of behaviour is of increasing interest as AI takes over more and more important tasks. Its [explainability](https://www.ibm.com/think/topics/explainable-ai) is an active area of research. 
 
 As AI systems advance and surpass humans across an increasing range of tasks, a critical question arises: **how can we verify that an AI system is behaving as expected?**
 There are two relevant parts to this question:
@@ -34,7 +34,7 @@ In particular, a SNARK is an argument (a type of proof) enabling a prover to pro
 
 >"Celebrated theoretical results from the mid-1980s and early 1990s indicated that VC protocols can, at least in principle, accomplish amazing feats. These include enabling a cell phone to monitor the execution of a powerful but untrusted (even malicious) supercomputer, enabling computationally weak peripheral devices (e.g., security card readers) to offload security-critical work to powerful remote servers, or letting a mathematician obtain a high degree of confidence that a theorem is true by looking at only a few symbols of a purported proof." *[Proofs, Arguments and Zero-Knowledge by Justin Thaler](https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.pdf)*
 
-This quote should give you some idea of where we are headed here, in fact, there is a powerful system (the AI system) and we want to somehow be able to verify, using much weaker systems, that it is behaving as we expect it to!
+This quote should give you some idea of where we are headed here. In fact, there is a powerful system (the AI system) and we want to somehow be able to verify, using much weaker systems, that it is behaving as we expect it to!
 Thus, we are interested in something known as *AI alignment* (which we will talk about next). This whole area of research, widely known as [zkML](https://opengradient.medium.com/a-gentle-introduction-to-zkml-8049a0e10a04), is advancing rapidly by merging cryptography and AI.
 
 ## AI Alignment

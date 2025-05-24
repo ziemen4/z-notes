@@ -1,2 +1,4 @@
 User-agent: *
-Disallow:
+Allow: /
+Sitemap: https://ziemann.me/sitemap-index.xml
+Host: https://ziemann.me

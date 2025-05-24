@@ -9,13 +9,13 @@
  */
 module.exports = {
   siteMetadata: {
+    siteUrl: "https://ziemann.me",
     title: `Z-Notes`,
     author: {
       name: `Ziemann`,
       summary: ``,
     },
     description: `Notes on Crytopgrahy, AI and other stuff`,
-    siteUrl: 'http://ziemann.me',
     // siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
     social: {
       twitter: ``,
@@ -23,6 +23,7 @@ module.exports = {
   },
   // pathPrefix: "/z-notes", // Add this line - should match your repository name
   plugins: [
+    "gatsby-plugin-sitemap",
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -143,6 +144,13 @@ module.exports = {
         // theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/profile-pic.jpeg`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        policy: [{ userAgent: "*", allow: "/" }],
+        sitemap: "https://ziemann.me/sitemap-index.xml",
       },
     },
   ],

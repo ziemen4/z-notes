@@ -3,6 +3,10 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
+export const Head = () => (
+  <meta name="robots" content="noindex,nofollow" />
+)
+
 export default function DraftTemplate({ data }) {
   const post = data.markdownRemark
   return (

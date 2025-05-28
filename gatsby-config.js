@@ -8,6 +8,7 @@
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
+  trailingSlash: "always",
   siteMetadata: {
     siteUrl: "https://ziemann.me",
     title: `Z-Notes`,
@@ -151,6 +152,13 @@ module.exports = {
       options: {
         policy: [{ userAgent: "*", allow: "/" }],
         sitemap: "https://ziemann.me/sitemap-index.xml",
+      },
+    },
+    {
+      resolve: "gatsby-plugin-canonical-urls",
+      options: {
+        siteUrl: "https://ziemann.me",   // must match siteMetadata.siteUrl
+        stripQueryString: true,
       },
     },
   ],

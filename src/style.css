@@ -6,6 +6,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-Italic.otf") format("opentype");
@@ -13,6 +14,7 @@
   font-style: italic;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-Light.otf") format("opentype");
@@ -20,6 +22,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-LightItalic.otf") format("opentype");
@@ -27,6 +30,7 @@
   font-style: italic;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-Medium.otf") format("opentype");
@@ -34,6 +38,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-MediumItalic.otf") format("opentype");
@@ -41,6 +46,7 @@
   font-style: italic;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-Bold.otf") format("opentype");
@@ -48,6 +54,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-BoldItalic.otf") format("opentype");
@@ -55,6 +62,7 @@
   font-style: italic;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-Black.otf") format("opentype");
@@ -62,6 +70,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-BlackItalic.otf") format("opentype");
@@ -69,6 +78,7 @@
   font-style: italic;
   font-display: swap;
 }
+
 /* ─────────────────────────────────────────────── */
 
 /* CSS Custom Properties Definitions */
@@ -98,30 +108,32 @@
   --spacing-20: 5rem;
   --spacing-24: 6rem;
   --spacing-32: 8rem;
-  --fontFamily-sans: 
-  "Satoshi",                      /* ← new primary font */
-  "MontserratVariable",           /* fallback to your old choice */
-  system-ui,
-  -apple-system,
-  BlinkMacSystemFont,
-  "Segoe UI",
-  Roboto,
-  "Helvetica Neue",
-  Arial,
-  "Noto Sans",
-  sans-serif,
-  "Apple Color Emoji",
-  "Segoe UI Emoji",
-  "Segoe UI Symbol",
-  "Noto Color Emoji";
---fontFamily-serif:
-  "Satoshi",
-  "Merriweather",
-  "Georgia",
-  Cambria,
-  "Times New Roman",
-  Times,
-  serif;
+  --fontFamily-sans:
+    "Satoshi",
+    /* ← new primary font */
+    "MontserratVariable",
+    /* fallback to your old choice */
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji";
+  --fontFamily-serif:
+    "Satoshi",
+    "Merriweather",
+    "Georgia",
+    Cambria,
+    "Times New Roman",
+    Times,
+    serif;
   --font-body: var(--fontFamily-serif);
   --font-heading: var(--fontFamily-sans);
   --fontWeight-normal: 400;
@@ -220,7 +232,7 @@ a {
 }
 
 /* Add styles for code blocks in dark mode */
-:not(pre) > code {
+:not(pre)>code {
   background-color: var(--color-code-bg);
   color: var(--color-code);
 }
@@ -309,16 +321,16 @@ h6 {
   font-size: var(--fontSize-1);
 }
 
-h1 > a {
+h1>a {
   color: inherit;
   text-decoration: none;
 }
 
-h2 > a,
-h3 > a,
-h4 > a,
-h5 > a,
-h6 > a {
+h2>a,
+h3>a,
+h4>a,
+h5>a,
+h6>a {
   text-decoration: none;
   color: inherit;
 }
@@ -335,20 +347,21 @@ p {
 
 ul,
 ol {
-  margin-left: var(--spacing-0);
-  margin-right: var(--spacing-0);
+  margin-left: var(--spacing-8);
+  margin-right: var(--spacing-8);
   padding: var(--spacing-0);
   margin-bottom: var(--spacing-8);
+  margin-top: var(--spacing-8);
   list-style-position: outside;
   list-style-image: none;
 }
 
 ul li,
 ol li {
-  padding-left: var(--spacing-0);
+  padding-left: var(--spacing-1);
 }
 
-li > p {
+li>p {
   margin-bottom: calc(var(--spacing-8) / 2);
 }
 
@@ -356,7 +369,7 @@ li *:last-child {
   margin-bottom: var(--spacing-0);
 }
 
-li > ul {
+li>ul {
   margin-left: var(--spacing-8);
   margin-top: calc(var(--spacing-8) / 2);
 }
@@ -372,12 +385,12 @@ blockquote {
   margin-bottom: var(--spacing-8);
 }
 
-blockquote > :last-child {
+blockquote> :last-child {
   margin-bottom: var(--spacing-0);
 }
 
-blockquote > ul,
-blockquote > ol {
+blockquote>ul,
+blockquote>ol {
   list-style-position: inside;
 }
 
@@ -488,7 +501,8 @@ a:focus {
 }
 
 site-header {
-  position: relative;          /* for absolute toggle */
+  position: relative;
+  /* for absolute toggle */
   padding: 1rem 2rem 0.75rem;
   border-bottom: 1px solid var(--border);
   margin-bottom: var(--spacing-32);
@@ -502,7 +516,8 @@ site-header {
 }
 
 .site-title {
-  font-size: 1rem;             /* smaller than before */
+  font-size: 1rem;
+  /* smaller than before */
   font-weight: 700;
   margin: 0;
 }
@@ -529,7 +544,7 @@ site-header {
 .site-main {
   flex: 1 0 auto;
   padding: 6rem 0rem 4rem;
-  margin: 0 auto;
+  margin: 0 auto;
 }
 
 .site-footer {
@@ -562,7 +577,8 @@ site-header {
 }
 
 .posts-list__title {
-  font-size: 1.6rem;           /* larger than site-title */
+  font-size: 1.6rem;
+  /* larger than site-title */
   font-weight: 600;
   margin: 0 0 0.3rem;
   transition: opacity 0.15s ease;
@@ -584,9 +600,12 @@ site-header {
   blockquote {
     padding: var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-4);
     margin-left: var(--spacing-0);
-    font-size: 0.9rem;         /* ↓ a bit smaller than body text   */
-    line-height: 1.4;          /* ↓ tighter leading                */
+    font-size: 0.9rem;
+    /* ↓ a bit smaller than body text   */
+    line-height: 1.4;
+    /* ↓ tighter leading                */
   }
+
   ul,
   ol {
     list-style-position: inside;
@@ -594,11 +613,16 @@ site-header {
 }
 
 /* ───── header controls ───── */
-.header-controls { display: flex; align-items: center; gap: 1rem; }
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
 /* ----- hamburger anatomy: one <span> inside the <button> ----- */
 .hamburger {
-  display: none;                 /* still hidden until mobile */
+  display: none;
+  /* still hidden until mobile */
   width: 24px;
   height: 24px;
   background: transparent;
@@ -608,11 +632,15 @@ site-header {
   color: var(--textNormal);
   appearance: none;
 }
-[data-theme="dark"] .hamburger { color: #fff; }
+
+[data-theme="dark"] .hamburger {
+  color: #fff;
+}
 
 /* middle bar */
 .hamburger span {
-  position: relative;            /* anchor for ::before/::after */
+  position: relative;
+  /* anchor for ::before/::after */
   display: block;
   width: 100%;
   height: 1px;
@@ -631,38 +659,85 @@ site-header {
   background: currentColor;
   transition: transform .2s ease;
 }
-.hamburger span::before { top: -8px; }   /* distance between lines */
-.hamburger span::after  { top:  8px; }
+
+.hamburger span::before {
+  top: -8px;
+}
+
+/* distance between lines */
+.hamburger span::after {
+  top: 8px;
+}
+
 /* X-state */
-.hamburger.open span       { background: transparent; }
-.hamburger.open span::before { transform: translateY(8px)  rotate(45deg); }
-.hamburger.open span::after  { transform: translateY(-8px) rotate(-45deg); }
+.hamburger.open span {
+  background: transparent;
+}
+
+.hamburger.open span::before {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.open span::after {
+  transform: translateY(-8px) rotate(-45deg);
+}
 
 /* desktop nav */
-.site-header__inner { display: flex; align-items: center; }
-.site-nav           { margin-left: auto; }   /* pushes nav to the right of title */
-.site-nav ul { list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0; }
-.menu-title { display: none; }
+.site-header__inner {
+  display: flex;
+  align-items: center;
+}
+
+.site-nav {
+  margin-left: auto;
+}
+
+/* pushes nav to the right of title */
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-title {
+  display: none;
+}
 
 @media (max-width: 42rem) {
+
   /* hide desktop bits */
-  .site-title { display: none; }
+  .site-title {
+    display: none;
+  }
 
   /* burger visible */
-  .hamburger  { display: block; }
+  .hamburger {
+    display: block;
+  }
 
   /* dropdown hidden until .open */
   .site-nav {
-    display: none;            /* default hidden */
-    position: absolute;       /* 👉 fixes it to header */
-    top: 100%;                /* just under the header */
-    left: 0;                  /* 👉 align to left edge */
-    width: 100%;              /* full width */
-    background: var(--bg);    /* same background as page */
+    display: none;
+    /* default hidden */
+    position: absolute;
+    /* 👉 fixes it to header */
+    top: 100%;
+    /* just under the header */
+    left: 0;
+    /* 👉 align to left edge */
+    width: 100%;
+    /* full width */
+    background: var(--bg);
+    /* same background as page */
     border-top: 1px solid var(--border);
-    z-index: 10;              /* stay above content */
+    z-index: 10;
+    /* stay above content */
   }
-  .site-nav.open {            /* shown after clicking burger */
+
+  .site-nav.open {
+    /* shown after clicking burger */
     display: block;
   }
 
@@ -674,7 +749,11 @@ site-header {
   }
 
   /* show “Z-Notes” at top of dropdown */
-  .menu-title { display: block; font-weight: 700; margin-bottom: .5rem; }
+  .menu-title {
+    display: block;
+    font-weight: 700;
+    margin-bottom: .5rem;
+  }
 
   .global-wrapper {
     padding: var(--spacing-5) var(--spacing-5);
@@ -692,13 +771,17 @@ site-header {
 
 /* add this (or be sure it remains) */
 .site-header {
-  position: relative;   /* allows absolute-positioned nav to align to it */
+  position: relative;
+  /* allows absolute-positioned nav to align to it */
 }
 
 
 /* centre caption that follows a gatsby-remark image */
-.gatsby-resp-image-wrapper + em {
-  display: block;          /* caption takes full line */
-  text-align: center;      /* centred under the image */
-  margin: 0.5rem 0 1.5rem; /* tweak spacing as you like */
+.gatsby-resp-image-wrapper+em {
+  display: block;
+  /* caption takes full line */
+  text-align: center;
+  /* centred under the image */
+  margin: 0.5rem 0 1.5rem;
+  /* tweak spacing as you like */
 }

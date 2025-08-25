@@ -7,7 +7,7 @@ description: "The history behind the Data Availability Problem and its groundbre
 ### Introduction
 While the theory behind the Data Availability (DA) problem has been discussed for years, 2024 and 2025 are the years we see solutions becoming a reality on the Ethereum network. And while there is some very good explainers about it, like [this](https://ethereum.org/en/roadmap/danksharding/) or [this](https://a16zcrypto.com/posts/article/an-overview-of-danksharding-and-a-proposal-for-improvement-of-das/), I want to try to journey through the original problem and the ingenious solutions that were found and not delve so much on the details of it all.
 
-You may have heard of the **Dencun** upgrade where EIP-4844 (Proto-Danksharding) was launched, creating _blobs_. More recently, work is underway for the upcoming **Electra** upgrade, which will introduce [PeerDAS](https://ethresear.ch/t/peerdas-a-simpler-das-approach-using-battle-tested-p2p-components/16541). Ethereum is laying the foundations for a scalable Blockchain and the Data Availability Problem (DAP) is at the centre of it.
+You may have heard of the **Dencun** upgrade where EIP-4844 (Proto-Danksharding) was launched, creating [_blobs_](https://mirror.xyz/alexhook.eth/W4PYt5zGWjw9VcB8Z6KIJDoyCU0RPA1d304cM0J75mQ). More recently, work is underway for the upcoming **Electra** upgrade, which will introduce [PeerDAS](https://ethresear.ch/t/peerdas-a-simpler-das-approach-using-battle-tested-p2p-components/16541). Ethereum is laying the foundations for a scalable Blockchain and the Data Availability Problem (DAP) is at the centre of it.
 
 My goal here is not to provide a specific post talking about how DAS is being implemented, but rather to discover how the problem first came to be, how it was formulated and what the solutions to it are. It's a more general description rather than a specific one. 
 
@@ -29,8 +29,9 @@ Since a portion of the block is withheld, honest full nodes can't generate a fra
 
 Imagine a full node $A$, raises an alarm: "I'm missing chunk 42!". The malicious producer can immediately broadcast chunk 42. Another full node, $B$, might receive chunk 42 _first_, and then see $A$'s alarm. From $B$'s perspective, $A$ is the lier launching a DoS attack. There is no way for the network to reliably agree on who was malicious. This makes any reward or slashing system based on alarms impossible to implement.
 
-![[Pasted image 20250823122543.png]]
-(source: Vitalik original DAP post)
+![DAP-problem.png](DAP-Problem.png)
+*A representation of the DAP as originally defined by Vitalik Buterin (Source: [post](https://github.com/ethereum/research/wiki/A-note-on-data-availability-and-erasure-coding))*
+
 ### A potential solution: Data Availability Sampling
 To solve this, one idea is to have light clients download small, random parts of the block. If enough honest light clients exist, and they each successfully download different sections, we can be statistically confident the whole block is available. However, a malicious producer could withhold just a few bytes, and most samplers would miss it, erroneously thinking the block is fine.
 

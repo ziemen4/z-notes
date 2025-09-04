@@ -67,7 +67,7 @@ A **Polynomial Commitment Scheme (PCS)** is a cryptographic tool that allows som
 
 Thus, the solution is to force the block producer to _commit_ to their polynomial beforehand and then ensure that each sample we take is from that specific polynomial! The specific PCS used by Ethereum is called **[KZG](https://www.iacr.org/archive/asiacrypt2010/6477178/6477178.pdf) (Kate-Zaverucha-Goldberg)**. In everyday terms: a PCS is like sealing your data (encoded as a polynomial) in a tamper-evident envelope that also lets you prove what the value is at any input without opening the whole thing.
 
-You may already be familiar with a widely popular commitment scheme used in blockchains: Merkle Trees! They allow one to generate a commitment (a Merkle Root) and provide the value at any point with an opening proof (the leaf value with a Merkle Proof). The only difference here, is that PCS encode **a polynomial** and not just *any* data and hence this is perfect for our use-case, since *blobs* **are** polynomials.
+You may already be familiar with a widely popular commitment scheme used in blockchains: Merkle Trees! They allow one to generate a commitment (a Merkle Root) and provide the value at any point with an opening proof (the leaf value with a Merkle Proof). The key difference with respect to PCS is that these exclusively encode **a polynomial** (with polynomial evaluations) and not just *any* set of data. Since *blobs* effectively **are** polynomials, this is a perfect fit!
 
 This scheme elegantly solves our problem by making bad encodings impossible to prove. Let's look at the two ways a malicious producer could try to cheat:
 

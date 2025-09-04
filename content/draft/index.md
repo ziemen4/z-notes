@@ -12,8 +12,7 @@ You may have heard of the **Dencun** upgrade where EIP-4844 (Proto-Danksharding)
 My goal here is not to provide a specific post talking about how DAS is being implemented, but rather to discover how the problem first came to be, how it was formulated and what the solutions to it are. It's a more general description rather than a specific one.
 
 ### The Rise of the Data Availability Problem
-I want to take you back to 2018, when the DA problem was [first formulated](https://github.com/ethereum/research/wiki/A-note-on-data-availability-and-erasure-coding)
-
+I want to take you back to 2018, when the DA problem was [first formulated](https://github.com/ethereum/research/wiki/A-note-on-data-availability-and-erasure-coding).
 The issue Ethereum was trying to solve back then was the security asymmetry between light clients and full nodes. On the single L1 chain, there were two types of nodes:
 
 1. **Full nodes,** which download all proposed blocks and execute all transactions.
@@ -67,6 +66,9 @@ A **Polynomial Commitment Scheme (PCS)** is a cryptographic tool that allows som
 2. **Evaluation Proofs**: The prover can evaluate the polynomial at any point $x$ such that $p(x)=y$ and produce a proof that anyone can verify using just the commitment, the point $x$, and the claimed value $y$.
 
 Thus, the solution is to force the block producer to _commit_ to their polynomial beforehand and then ensure that each sample we take is from that specific polynomial! The specific PCS used by Ethereum is called **[KZG](https://www.iacr.org/archive/asiacrypt2010/6477178/6477178.pdf) (Kate-Zaverucha-Goldberg)**. In everyday terms: a PCS is like sealing your data (encoded as a polynomial) in a tamper-evident envelope that also lets you prove what the value is at any input without opening the whole thing.
+
+You may already be familiar with a widely popular commitment scheme used in blockchains: Merkle Trees! They allow one to generate a commitment (a Merkle Root) and provide the value at any point with an opening proof (the leaf value with a Merkle Proof). The only difference here, is that PCS encode **a polynomial** and not just *any* data and hence this is perfect for our use-case, since *blobs* **are** polynomials.
+
 This scheme elegantly solves our problem by making bad encodings impossible to prove. Let's look at the two ways a malicious producer could try to cheat:
 
 ##### Attack 1: Commit to the correct polynomial, but provide fake evaluation proofs.

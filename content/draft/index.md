@@ -80,7 +80,6 @@ This is the clever attack. The producer tries to create a fraudulent polynomial 
 Importantly, a polynomial of degree less than $k$ is **uniquely defined by $k$ points**. Since both $P(x)$ and $Q(x)$ must have degree less than $k$ (a requirement of the PCS, since a commitment could not be created in any other case) and they must match on the first $k$ points (since they represent the same original data), they **must be the exact same polynomial**. It is mathematically impossible for $Q(x)$ to be different from $P(x)$ at any point.
 
 ![polynomial-pq-invalid.png](polynomial-pq-invalid.png)
-
 *A representation of how $P(x)$ and $Q(x)$ must be the same polynomial or a higher degree polynomial is required instead. **Polynomials are not up to scale***
 
 In other words, if you imagine a polynomial that is defined by two points, that would be a line. An attacker would use the same starting line (the original data), but try to encode it maliciously by giving other points that **are not** part of that line. Now that means that we have two polynomials $P(x)$ and $Q(x)$ that are uniquely defined by **two points**. This means that effectively they have **must** have degree $0$ or $1$ (only possibilities that are strictly less than $2$), and if they do they **must** be the **same line**, if $Q(x)$ was wrongly encoded, it would immediately be at least a degree $2$ polynomial (a quadratic function), and we cannot even generate a valid commitment for said polynomial!

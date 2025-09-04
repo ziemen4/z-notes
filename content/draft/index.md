@@ -5,11 +5,11 @@ description: "The history behind the Data Availability Problem and its groundbre
 ---
 
 ### Introduction
-While the theory behind the Data Availability (DA) problem has been discussed for years, 2024 and 2025 are the years we see solutions becoming a reality on the Ethereum network. And while there is some very good explainers about it, like [this](https://ethereum.org/en/roadmap/danksharding/) or [this](https://a16zcrypto.com/posts/article/an-overview-of-danksharding-and-a-proposal-for-improvement-of-das/), I want to try to journey through the original problem and the ingenious solutions that were found and not delve so much on the details of it all.
+While the theory behind the Data Availability (DA) problem has been discussed for years, **these are the years we can start seeing solutions become a reality** on the Ethereum network. And while **there are** some very good explainers about it, like [this](https://ethereum.org/en/roadmap/danksharding) or [this](https://a16zcrypto.com/posts/article/an-overview-of-danksharding-and-a-proposal-for-improvement-of-das), I want to try to journey through the original problem and the ingenious solutions that were found and not delve so much on the details of it all.
 
-You may have heard of the **Dencun** upgrade where EIP-4844 (Proto-Danksharding) was launched, creating [_blobs_](https://mirror.xyz/alexhook.eth/W4PYt5zGWjw9VcB8Z6KIJDoyCU0RPA1d304cM0J75mQ). More recently, work is underway for the upcoming **Electra** upgrade, which will introduce [PeerDAS](https://ethresear.ch/t/peerdas-a-simpler-das-approach-using-battle-tested-p2p-components/16541). Ethereum is laying the foundations for a scalable Blockchain and the Data Availability Problem (DAP) is at the centre of it.
+You may have heard of the **Dencun** upgrade where EIP-4844 (Proto-Danksharding) was launched, creating [_blobs_](https://mirror.xyz/alexhook.eth/W4PYt5zGWjw9VcB8Z6KIJDoyCU0RPA1d304cM0J75mQ). **In May 2025 the combined Prague–Electra (“Pectra”) upgrade went live**; looking ahead, [PeerDAS](https://ethresear.ch/t/peerdas-a-simpler-das-approach-using-battle-tested-p2p-components/16541) (EIP-7594) is slated for the **Fusaka** upgrade. Ethereum is laying the foundations for a scalable blockchain and the Data Availability Problem (DAP) is at the centre of it.
 
-My goal here is not to provide a specific post talking about how DAS is being implemented, but rather to discover how the problem first came to be, how it was formulated and what the solutions to it are. It's a more general description rather than a specific one. 
+My goal here is not to provide a specific post talking about how DAS is being implemented, but rather to discover how the problem first came to be, how it was formulated and what the solutions to it are. It's a more general description rather than a specific one.
 
 ### The Rise of the Data Availability Problem
 I want to take you back to 2018, when the DA problem was [first formulated](https://github.com/ethereum/research/wiki/A-note-on-data-availability-and-erasure-coding)
@@ -29,7 +29,7 @@ Since a portion of the block is withheld, honest full nodes can't generate a fra
 
 Imagine a full node $A$, raises an alarm: "I'm missing chunk 42!". The malicious producer can immediately broadcast chunk 42. Another full node, $B$, might receive chunk 42 _first_, and then see $A$'s alarm. From $B$'s perspective, $A$ is the lier launching a DoS attack. There is no way for the network to reliably agree on who was malicious. This makes any reward or slashing system based on alarms impossible to implement.
 
-![DAP-problem.png](DAP-Problem.png)
+![DAP-problem.png](DAP-problem.png)
 *A representation of the DAP as originally defined by Vitalik Buterin (Source: [post](https://github.com/ethereum/research/wiki/A-note-on-data-availability-and-erasure-coding))*
 
 ### A potential solution: Data Availability Sampling
@@ -37,7 +37,7 @@ To solve this, one idea is to have light clients download small, random parts of
 
 This leads to a more interesting idea: force the block producer to add redundancy using **erasure coding**. This process extends the block from $M$ original chunks to $N$ total chunks (where $N \gt M$). The key property is that you can reconstruct the original $M$ chunks from **_any_** $M$ of the $N$ chunks.
 
-There are plenty of erasure codes, but here we will focus on **Reed-Solomon codes**. The underlying math involves polynomials over a finite field $\mathbb{F}_q$​. If you are interested in understanding it more in-depth, read Section 2 on [Thaler's masterpiece](https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.pdf)
+There are plenty of erasure codes, but here we will focus on **Reed-Solomon codes**. The underlying math involves polynomials over a finite field $\mathbb{F}_q$​. If you are interested in understanding it more in-depth, read Section 2 on [Thaler's masterpiece](https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.pdf). Plainly: this is like adding smart “spares” to your data, so even if part of it is missing, any sufficiently large subset lets you rebuild the whole thing.
 
 Let's break down how we turn block data into a polynomial, assuming a 2-fold extension (meaning $N=2M$, or $k/n=1/2$, also known as the code's "rate"):
 
@@ -51,14 +51,14 @@ Let's break down how we turn block data into a polynomial, assuming a 2-fold ext
 
 Now that we have the extended block and light nodes can sample it. Let's go through some cases:
 ##### 1. The block proposer extended the block correctly
-The producer correctly applied the erasure coding. Now, if they want to withhold even a small piece of data, since there are enough chunks to reconstruct the whole block (recall that with $M$ chunks we can reconstruct $N$ chunks) then there is no point in them doing so! To pull it off, they must withhold (assuming the same 2-fold extension that we discussed before) **at least half of the data**.
+The producer correctly applied the erasure coding. Now, if they want to withhold even a small piece of data, since there are enough chunks to reconstruct the whole block (recall that with **any** $M$ chunks we can reconstruct $N$ chunks) then there is no point in them doing so! To pull it off, they must withhold (assuming the same 2-fold extension that we discussed before) **at least half of the data**.
 
 If a single light client samples just 10 random chunks, the probability of them _missing_ the withheld data is $(\frac{1}{2})^{10}$, which is less than 0.1%. With hundreds of clients sampling, it becomes a statistical certainty that the fraud will be detected.
 
 ##### 2. The block proposer did not extend the block correctly
 Here lies the problem. What if the producer creates the extended data with garbage values that don't follow the polynomial? Then everything we discussed before simply does not hold anymore!
 
-Original proposals defined specialised fraud proofs to show that the extended block was incorrectly generated. Though some [research](https://arxiv.org/pdf/1809.09044) was done for such a scheme, the fraud proofs were still not good enough in terms of size and therefore there seemed to be no efficient way to solve the problem! Luckily, there is a clever solution involving polynomials.
+Original proposals defined specialised fraud proofs to show that the extended block was incorrectly generated. Though some [research](https://arxiv.org/pdf/1809.09044) was done for such a scheme, the fraud proofs were still not good enough in terms of size and overall complexity. Therefore there seemed to be no efficient way to solve the problem! Luckily, there is a clever solution involving polynomials.
 
 ### The fall of the Data Availability Problem: PCS
 A **Polynomial Commitment Scheme (PCS)** is a cryptographic tool that allows someone to create a short, cryptographic commitment for a polynomial with two key properties:
@@ -66,15 +66,22 @@ A **Polynomial Commitment Scheme (PCS)** is a cryptographic tool that allows som
 1. **Binding**: The commitment is uniquely tied to one specific polynomial.
 2. **Evaluation Proofs**: The prover can evaluate the polynomial at any point $x$ such that $p(x)=y$ and produce a proof that anyone can verify using just the commitment, the point $x$, and the claimed value $y$.
 
-Thus, the solution is to force the block producer to _commit_ to their polynomial beforehand and then ensure that each sample we take is from that specific polynomial! The specific PCS used by Ethereum is called **[KZG](https://www.iacr.org/archive/asiacrypt2010/6477178/6477178.pdf) (Kate-Zaverucha-Goldberg)**. This scheme elegantly solves our problem by making bad encodings impossible to prove. Let's look at the two ways a malicious producer could try to cheat:
+Thus, the solution is to force the block producer to _commit_ to their polynomial beforehand and then ensure that each sample we take is from that specific polynomial! The specific PCS used by Ethereum is called **[KZG](https://www.iacr.org/archive/asiacrypt2010/6477178/6477178.pdf) (Kate-Zaverucha-Goldberg)**. In everyday terms: a PCS is like sealing your data (encoded as a polynomial) in a tamper-evident envelope that also lets you prove what the value is at any input without opening the whole thing.
+This scheme elegantly solves our problem by making bad encodings impossible to prove. Let's look at the two ways a malicious producer could try to cheat:
 
 ##### Attack 1: Commit to the correct polynomial, but provide fake evaluation proofs.
-The producer generates the correct polynomial $P(x)$ from the original data and publishes the commitment $C$. Now, a sampler requests the evaluation at point $j$, which is in the producer's secretly corrupted part of the extension. The producer can't just send back a fake value. They must provide the value _and_ an evaluation proof that links the value, the point $j$, and the original commitment $C$. Because the fake value does not lie on the committed polynomial $P(x)$, the PCS mathematics guarantee that **it is computationally impossible for them to generate a valid proof**. The proof verification will fail, and the fraud is detected.
+The producer generates the correct polynomial $P(x)$ from the original data and publishes the commitment $C$. Now, a sampler requests the evaluation at point $j$, which is in the producer's secretly corrupted part of the extension. The producer can't just send back a fake value. They must provide the value _and_ an evaluation proof that links the value, the point $j$, and the original commitment $C$. Because the fake value does not lie on the committed polynomial $P(x)$, the PCS mathematics guarantee that **it is computationally impossible for them to generate a valid proof**. If they do give a false value, the proof verification will fail, and the fraud is detected.
 
 ##### Attack 2: Create a malicious polynomial that matches the original data but diverges on the extension.
 This is the clever attack. The producer tries to create a fraudulent polynomial $Q(x)$ that matches the real polynomial $P(x)$ on the first $k$ points (the original data), but gives different results for the extended data. They then publish a commitment $C_Q$​ to this fake polynomial.
 
-Importantly, a polynomial of degree less than $k$ is **uniquely defined by $k$ points**. Since both $P(x)$ and $Q(x)$ must have degree less than $k$ (a requirement of the PCS, since a commitment could not be created in any other case) and they must match on the first $k$ points (to be a valid encoding of the original data), they **must be the exact same polynomial**. It is mathematically impossible for $Q(x)$ to be different from $P(x)$ at any point.
+Importantly, a polynomial of degree less than $k$ is **uniquely defined by $k$ points**. Since both $P(x)$ and $Q(x)$ must have degree less than $k$ (a requirement of the PCS, since a commitment could not be created in any other case) and they must match on the first $k$ points (since they represent the same original data), they **must be the exact same polynomial**. It is mathematically impossible for $Q(x)$ to be different from $P(x)$ at any point.
+
+![polynomial-pq-invalid](polynomial-pq-invalid.png)
+
+*A representation of how $P(x)$ and $Q(x)$ must be the same polynomial or a higher degree polynomial is required instead. **Polynomials are not up to scale***
+
+In other words, if you imagine a polynomial that is defined by two points, that would be a line. An attacker would use the same starting line (the original data), but try to encode it maliciously by giving other points that **are not** part of that line. Now that means that we have two polynomials $P(x)$ and $Q(x)$ that are uniquely defined by **two points**. This means that effectively they have **must** have degree $0$ or $1$ (only possibilities that are strictly less than $2$), and if they do they **must** be the **same line**, if $Q(x)$ was wrongly encoded, it would immediately be at least a degree $2$ polynomial (a quadratic function), and we cannot even generate a valid commitment for said polynomial!
 
 This is the magic of the PCS: **It makes the data self-authenticating.** A commitment to the first $k$ points is implicitly a commitment to all $n$ points of the correct extension. There is no longer a need for fraud proofs for bad encodings because a "bad encoding" with a valid commitment simply **cannot** be constructed.
 
@@ -89,4 +96,4 @@ Therefore, the powerful DAS + PCS machinery, originally theorised for light node
 ### Conclusion
 From a seemingly simple problem of securing light clients, we've journeyed through data sampling, erasure codes and commitment schemes. These lead to learning about powerful ideas such as the redundancy of erasure codes and the mathematics behind polynomials, bringing us closer to solving the DAP!
 
-We are currently witnessing the rollout of PeerDAS with the full vision of Danksharding as its culmination. These are the ideas that will allow Ethereum to scale while retaining its core security guarantees.
+We are currently witnessing the rollout towards PeerDAS with the full vision of Danksharding as its culmination. These are the ideas that will allow Ethereum to scale while retaining its core security guarantees.

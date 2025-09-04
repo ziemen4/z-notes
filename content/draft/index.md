@@ -77,7 +77,7 @@ This is the clever attack. The producer tries to create a fraudulent polynomial 
 
 Importantly, a polynomial of degree less than $k$ is **uniquely defined by $k$ points**. Since both $P(x)$ and $Q(x)$ must have degree less than $k$ (a requirement of the PCS, since a commitment could not be created in any other case) and they must match on the first $k$ points (since they represent the same original data), they **must be the exact same polynomial**. It is mathematically impossible for $Q(x)$ to be different from $P(x)$ at any point.
 
-![polynomial-pq-invalid](polynomial-pq-invalid.png)
+![polynomial-pq-invalid.png](polynomial-pq-invalid.png)
 
 *A representation of how $P(x)$ and $Q(x)$ must be the same polynomial or a higher degree polynomial is required instead. **Polynomials are not up to scale***
 

@@ -16,7 +16,7 @@ module.exports = {
       name: `Ziemann`,
       summary: ``,
     },
-    description: `Notes on Crytopgrahy, AI and other stuff`,
+    description: `Notes on Cryptography, AI and other stuff`,
     // siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
     social: {
       twitter: ``,

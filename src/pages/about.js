@@ -14,16 +14,13 @@ const AboutPage = ({ location }) => (
     </p>
 
     <p>
-      I’m currently working on{" "}
-      <a href="https://github.com/ziemen4/zkpoex" target="_blank" rel="noopener noreferrer">
-        zkpoex
-      </a>
-      , actively learning about zero‑knowledge proofs and, when possible, contributing to{" "}
-      <a href="https://github.com/ultrasoundlabs" target="_blank" rel="noopener noreferrer">
-        Ultrasound Labs
-      </a>
-      . I’m passionate about the future of crypto and blockchain technologies, and I have several interests including
-      applied mathematics, cryptography, AI, and neuroscience.
+      I’m primarily working on <a href="https://github.com/ziemen4/zkguard" target="_blank" rel="noopener noreferrer">zkguard</a> (see a practical implementation using Safe Wallet <a href="https://github.com/ziemen4/safe-zkguard" target="_blank" rel="noopener noreferrer">here</a>), and also work on <a href="https://github.com/ziemen4/zkpoex" target="_blank" rel="noopener noreferrer">zkpoex</a>. I’m actively learning about zero‑knowledge
+      proofs and, when possible, contributing to <a href="https://github.com/ultrasoundlabs" target="_blank" rel="noopener noreferrer">Ultrasound Labs</a>.
+    </p>
+
+    <p>
+      I’m passionate about the future of crypto and blockchain technologies, and I have several interests including applied mathematics,
+      cryptography, AI, and neuroscience.
     </p>
   </Layout>
 )

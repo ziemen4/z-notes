@@ -345,33 +345,91 @@ p {
   padding: var(--spacing-0);
 }
 
+/* Compact list styles for Markdown content */
 ul,
 ol {
-  margin-left: var(--spacing-8);
+  margin-left: var(--spacing-6);
+  /* slightly less indent */
   margin-right: var(--spacing-8);
-  padding: var(--spacing-0);
-  margin-bottom: var(--spacing-8);
-  margin-top: var(--spacing-8);
+  padding: 0;
+  margin-bottom: var(--spacing-4);
+  /* reduce vertical gap */
+  margin-top: var(--spacing-4);
   list-style-position: outside;
   list-style-image: none;
 }
 
+/* Reduce space when a list immediately follows common blocks */
+p+ul,
+p+ol,
+h1+ul,
+h2+ul,
+h3+ul,
+h4+ul,
+h5+ul,
+h6+ul,
+h1+ol,
+h2+ol,
+h3+ol,
+h4+ol,
+h5+ol,
+h6+ol,
+blockquote+ul,
+blockquote+ol,
+pre+ul,
+pre+ol {
+  margin-top: calc(var(--spacing-2));
+}
+
+/* More specific corrections to cancel the previous element's bottom margin
+   so the list appears closer to the preceding block. These use calc() to
+   offset the preceding element's margin without changing that element's rules. */
+p+ul,
+p+ol,
+blockquote+ul,
+blockquote+ol,
+pre+ul,
+pre+ol {
+  /* paragraph & blockquote bottom margin is --spacing-8; aim for a net gap of --spacing-4 */
+  margin-top: calc(var(--spacing-4) - var(--spacing-8));
+}
+
+h1+ul,
+h2+ul,
+h3+ul,
+h4+ul,
+h5+ul,
+h6+ul,
+h1+ol,
+h2+ol,
+h3+ol,
+h4+ol,
+h5+ol,
+h6+ol {
+  /* headings use --spacing-6 bottom margin; aim for a net gap of --spacing-4 */
+  margin-top: calc(var(--spacing-4) - var(--spacing-6));
+}
+
 ul li,
 ol li {
-  padding-left: var(--spacing-1);
+  padding-left: calc(var(--spacing-1) / 2);
+  margin-bottom: calc(var(--spacing-2));
+  /* small spacing between items */
 }
 
 li>p {
-  margin-bottom: calc(var(--spacing-8) / 2);
+  margin-bottom: calc(var(--spacing-4) / 2);
 }
 
 li *:last-child {
   margin-bottom: var(--spacing-0);
 }
 
-li>ul {
-  margin-left: var(--spacing-8);
-  margin-top: calc(var(--spacing-8) / 2);
+li>ul,
+li>ol {
+  margin-left: var(--spacing-6);
+  margin-top: calc(var(--spacing-4) / 2);
+  margin-bottom: calc(var(--spacing-4) / 2);
 }
 
 blockquote {

@@ -77,7 +77,7 @@ Note that this would add more elements to $x$ (increasing the signature size) bu
 Sounds familiar? It is the definition of comparability we just gave before! Hence, whenever we had an encoding dominating another one, the checksum part would always turn up to be less, simply because:
 
 $$
-v \cdot W_{max} - \sum x_i \gt v \cdot W_{max} - \sum x'_i
+v \cdot W_{max} - \sum x'_i \gt v \cdot W_{max} - \sum x_i
 $$
 as long as $x > x'$ component-wise.
 

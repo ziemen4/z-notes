@@ -36,10 +36,10 @@ The signature scheme basically consists of two algorithms, signing and verifying
 Where $v$ is the number of hash-chains and $w$ is the Winternitz parameter (bit-width). Each chain has length $2^w$. The value $\sigma_{OTS} = (H^{x_1}(sk_{l, 1}), ..., H^{x_v}(sk_{l, v}))$ accompanied by the Merkle Proof $\theta_l$ is the signature over the message $m$ 
 
 ![xmss-hash-tree.png](xmss-hash-tree.png)
-*XMSS Approach based on [this]() presentation given in the Ethereum PQ workshop*
+*XMSS Approach based on [this](https://www.youtube.com/watch?v=d6ibWufnbjM) presentation given in the Ethereum PQ workshop*
 
 Verification of a signature, would involve the following steps:
-- Recompute $x$ from the message $m$
+- Recompute $x$ from the message $m$Each element is a
 - For each $\sigma_{OTS, i}$ complete the hash-chain by hashing the remaining $2^w - x_i - 1$ steps, until reaching $pk_l = H^{2^w - 1 - x_i}(\sigma_{OTS, i})$
 - Finally, verify that $pk_l$ is included in the $MT$ with root $pk_R$
 
@@ -63,7 +63,7 @@ For example $(1, 2, 3)$ is comparable with $(2,3,4)$ or $(1,2,4)$ but it's incom
 The idea is to find an encoding function $IncEnc(P, m, \rho, l)$ that gives **incomparable codewords** from a message $m$. Having incomparable codewords means that the protocol is secure.
 The reason for this is that whenever we get an encoding $(x_1, ..., x_v)$ from a message $m$ we are effectively getting the number of steps to hash on every chain. If there is at least one message $m'$ such that its encoding is **comparable** then we **could** generate a valid signature without knowing the secret key, just by continuing to hash from a known encoding $x$
 
-![binding-xmss.png](binding-xmss.png)
+![binding-xmss.jpg](binding-xmss.jpg)
 *Encoding of messages $m$ and $m'$ where the encoding of $m'$ can be constructed solely based on the encoding of $m$ and not based in the values of $sk_l$*
 
 Therefore, to prevent this from being able to happen, one needs to generate an **incomparable encoding** such that producing $x'$ is simply not possible.
@@ -163,7 +163,7 @@ The follow up paper [_At the Top of the Hypercube_](https://eprint.iacr.org/2025
 
 > How should we choose the codewords $x$ in order to get the best tradeoff between signature size and verification time?
 
-The idea is as follows: Since verifying signatures is what we will have to do in the Verification Algorithm of our proving system, can we make the verification very fast while keeping the signature size small? In other words, could we encode in a way where the signer makes most of the work but without requiring us to decrease the number of hash-chain steps $2^w$?
+The idea is as follows: Since verifying signatures is what we will have to do in the Verification Algorithm of our proving system, can we make the verification very fast while keeping the signature size small? In other words, could we encode in a way where the signer does most of the work but without requiring us to decrease the number of hash-chain steps $2^w$?
 
 The answer is yes! By forcing the encoding to lie in the top layers of the hypercube (very close to the chain ends), we force the signer to do the heavy lifting (hashing many times), while the verifier only needs to compute a few remaining hashes.
 
@@ -175,7 +175,8 @@ The idea is that there is a directed edge from a point $x$ to a point $y$ if:
 
 So, for instance if we have $x = 11 \dots 1$ and $y = 21 \dots 1$ then since $y_1 = x_1 + 1$ but $x_j = y_j$ for all $j \neq 1$ we would have a directed edge from $x$ to $y$
 
-TOOO: -- Add 2D Diagram traversing with arrows
+![hypercube-walk.jpg](hypercube-walk.jpg)
+*A 2-dimensional grid of a walk from the source $(0,0)$ to the sink $(2,2)$. Each point is a $(x, y)$ coordinate and each edge fulfills the aforementioned condition*
 
 Note that if we count the distance from each point to the "sink" $(N-1, N-1, \dots, N-1)$ we start seeing layers at the same distance, and importantly two properties hold:
 - Points in the same layer turn out to form an **incomparable set** under the coordinate wise order that we care about. Since they are the same distance away, the sum of their components is always a constant $T$, which complies with the Winternitz Target Sum we saw before.

@@ -3,7 +3,7 @@
 Ethereum today relies on BLS signatures for attestations. These are compact, aggregatable and battle-tested yet they are built on elliptic-curve assumptions which means that they are **not** post-quantum secure. 
 [Lean Ethereum](https://leanroadmap.org/) is an experimental roadmap that is aggressively simplifying the base layer and, in one of its tracks, moving to a post-quantum secure Ethereum setup. In that world, XMSS style signatures become one of the main candidates to replace the existing BLS signatures.
 
-In this post I want to walk through the XMSS signature scheme and how it is adapted for LeanSig, the proposed signature scheme for Lean Ethereum. Mostly I will be trying to convey the information in [this paper](https://eprint.iacr.org/2025/055) and trying to explain it as best as I can. The goal is to go through these ideas:
+In this post I want to walk through the XMSS signature scheme and how it is adapted for LeanSig, the proposed signature scheme for Lean Ethereum. Mostly I'll explain [this paper](https://eprint.iacr.org/2025/055) as best as I can. The goal is to go through these ideas:
 - How XMSS roughly works
 - The notion of incomparable encodings
 - Building a generic protocol to verify signature aggregation via a succinct argument system
@@ -39,7 +39,7 @@ Where $v$ is the number of hash-chains and $w$ is the Winternitz parameter (bit-
 *XMSS Approach based on [this](https://www.youtube.com/watch?v=d6ibWufnbjM) presentation given in the Ethereum PQ workshop*
 
 Verification of a signature, would involve the following steps:
-- Recompute $x$ from the message $m$Each element is a
+- Recompute $x$ from the message $m$
 - For each $\sigma_{OTS, i}$ complete the hash-chain by hashing the remaining $2^w - x_i - 1$ steps, until reaching $pk_l = H^{2^w - 1 - x_i}(\sigma_{OTS, i})$
 - Finally, verify that $pk_l$ is included in the $MT$ with root $pk_R$
 
@@ -85,6 +85,8 @@ There is a better way to do this which does not increase signature size called W
 - Whenever you get $x$ verify that: $\sum_{i = 1}^v x_i = T$
 
 Where $T$ is a fixed parameter. Intuitively this works because of the same reason as before. If one were to obtain some $x > x'$ component-wise then the sum of its components **will be** greater and therefore will be at least $T + n$ with $n \gt 0$. This not only allows to discard the checksum as part of the signature but also is great for an optimization that we'll discuss later.
+
+This does add more work for the prover, but it's required to guarantee that the sheme is secure.
 
 ## LeanSig
 Now we are ready to talk about *LeanSig*, the new construction that is based on these ideas and will be used to replace BLS. Ethereum requires attestations from validators once per epoch, therefore, each keypair will be used to attest in an epoch.
@@ -176,7 +178,7 @@ The idea is that there is a directed edge from a point $x$ to a point $y$ if:
 So, for instance if we have $x = 11 \dots 1$ and $y = 21 \dots 1$ then since $y_1 = x_1 + 1$ but $x_j = y_j$ for all $j \neq 1$ we would have a directed edge from $x$ to $y$
 
 ![hypercube-walk.jpg](hypercube-walk.jpg)
-*A 2-dimensional grid of a walk from the source $(0,0)$ to the sink $(2,2)$. Each point is a $(x, y)$ coordinate and each edge fulfills the aforementioned condition*
+*A 2-dimensional grid of a walk from the source $(0,0)$ to the sink $(2,2)$. Each point is a $(x, y)$ coordinate and each edge fulfills the aforementioned condition*. The top layer is shown and corresponds to the points $(2,1)$ and $(1,2)$
 
 Note that if we count the distance from each point to the "sink" $(N-1, N-1, \dots, N-1)$ we start seeing layers at the same distance, and importantly two properties hold:
 - Points in the same layer turn out to form an **incomparable set** under the coordinate wise order that we care about. Since they are the same distance away, the sum of their components is always a constant $T$, which complies with the Winternitz Target Sum we saw before.

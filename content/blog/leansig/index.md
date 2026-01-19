@@ -1,7 +1,7 @@
 ---  
-title: "Trustless Bug Bounties with zkpoex: Proving Exploits without Revealing Them"
+title: "Lean Ethereum - LeanSig"
 date: "2026-01-20T09:28:42.514Z"  
-description: "An open protocol for proving exploits using ZK proofs"
+description: "A proposed post-quantum signature scheme for Lean Ethereum"
 ---
 *Special thanks to [Thomas](https://x.com/tcoratger/) for his great feedback and review*
 

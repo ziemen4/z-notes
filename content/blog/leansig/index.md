@@ -1,6 +1,6 @@
 ---  
 title: "Trustless Bug Bounties with zkpoex: Proving Exploits without Revealing Them"
-date: "2025-04-18T09:27:45.934Z"  
+date: "2026-01-20T09:28:42.514Z"  
 description: "An open protocol for proving exploits using ZK proofs"
 ---
 *Special thanks to [Thomas](https://x.com/tcoratger/) for his great feedback and review*

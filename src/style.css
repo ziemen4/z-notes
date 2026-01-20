@@ -651,6 +651,10 @@ site-header {
   color: var(--textMuted);
 }
 
+.posts-list__description {
+  margin: 0;
+}
+
 /* Media queries */
 
 @media (max-width: 42rem) {

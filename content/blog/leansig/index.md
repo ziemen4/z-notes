@@ -21,7 +21,7 @@ XMSS is a hash-based signature scheme that is designed to be post-quantum secure
 1. A One Time Signature (OTS) scheme ([Winternitz](https://eprint.iacr.org/2011/191)) built from hash chains.
 2. A [Merkle Tree](https://people.eecs.berkeley.edu/~raluca/cs261-f15/readings/merkle.pdf) that bundles many one-time public keys into a single one.
 
-We start with $L$ one-time keypairs $(sk_{l}, pk_{l})$. Recall that for each $l$, the secret key is a vector: $sk_l = (sk_{l, 1}, \dots, sk_{l, v})$ and each component defines one hash chain. The corresponding public key $pk_l = (pk_{l, 1}, \dots, pk_{l, v})$ consists of the result of repeatedly hashing $sk_{l,i}$, meaning that for each component $i$: $pk_{l,i} = H^{2^w-1}(sk_{l,i})$
+We start with $L$ one-time keypairs $(sk_{l}, pk_{l})$. Recall that for each $l$, the secret key is a vector: $sk_l = (sk_{l,1}, \dots, sk_{l,v})$ and each component defines one hash chain. The corresponding public key $pk_l = (pk_{l,1}, \dots, pk_{l,v})$ consists of the result of repeatedly hashing $sk_{l,i}$, meaning that for each component $i$: $pk_{l,i} = H^{2^w-1}(sk_{l,i})$
 
 The idea is as follows:
 - For each pair, define $pk_l$ as a leaf in a Merkle Tree. After all leaves are defined, construct the tree.
@@ -39,20 +39,20 @@ The signature scheme basically consists of two algorithms, signing and verifying
 	- Converting $m$ to $x$ and
 	- Hashing each component of $sk_l$ (decomposed in $v$ values) a number of $x_i$ times.
 
-Here, $v$ is the number of hash-chains and $w$ is the Winternitz parameter (bit-width). Each chain has length $2^w$. Together, the one-time signature $\sigma_{OTS} = (H^{x_1}(sk_{l, 1}), ..., H^{x_v}(sk_{l, v}))$ and the Merkle Proof $\theta_l$ are the signature over the message $m$
+Here, $v$ is the number of hash-chains and $w$ is the Winternitz parameter (bit-width). Each chain has length $2^w$. Together, the one-time signature $\sigma_{OTS} = (H^{x_1}(sk_{l,1}), ..., H^{x_v}(sk_{l,v}))$ and the Merkle Proof $\theta_l$ are the signature over the message $m$
 
 ![xmss-hash-tree.png](xmss-hash-tree.png)
 *XMSS Approach based on [this](https://www.youtube.com/watch?v=d6ibWufnbjM) presentation given in the Ethereum PQ workshop*
 
 Verification of a signature, would involve the following steps:
 - Recompute $x$ from the message $m$
-- For each $\sigma_{OTS, i}$ complete the hash-chain by hashing the remaining $2^w - x_i - 1$ steps, until reaching $pk_l = H^{2^w - 1 - x_i}(\sigma_{OTS, i})$
+- For each $\sigma_{OTS,i}$ complete the hash-chain by hashing the remaining $2^w - x_i - 1$ steps, until reaching $pk_l = H^{2^w - 1 - x_i}(\sigma_{OTS,i})$
 - Finally, verify that $pk_l$ is included in the Merkle Tree $MT$ with root $pk_R$
 
 ## Parameters
 Before diving into what folks working in Lean Ethereum did, I want to give a picture of what happens when you change the parameters in this scheme.
 The two most important parameters are $v$ (the number of hash-chains) and $2^w$ (the number of steps from $sk_l$ to $pk_l$). They both target different issues:
-1. The number of hash chains $v$ is important to prevent collision resistant encodings of messages. If there are multiple messages that map to the same encoding, then the scheme is not **binding**, since one could potentially find that the same signature could be used for different messages.
+1. The number of hash chains $v$ is important to prevent collision resistant encodings of messages. If there are multiple messages that map to the same encoding, then the scheme is not **binding**, since one could potentially find that the same signature could be used for different messages. Larger $v$ expands the encoding space $(2^w)^v$, reducing collisions.
 2. The number of steps $2^w$ is important to prevent pre-image attacks. If an attacker can effectively reverse a hash-chain, it might find $sk_l$, breaking the security of the scheme
 
 The signature size (in bits) is: $(v + log L) \cdot w$ while the work that the prover and verifier **together** must do is $O(v \cdot 2^w + log L)$ hashes. Note that in a blockchain context we want both small signatures **and** fast verifiers.
@@ -60,12 +60,9 @@ The signature size (in bits) is: $(v + log L) \cdot w$ while the work that the p
 ## Incomparable encodings
 The notion of incomparable encodings is important in order to create a scheme where we can't create signatures for messages $m$ if we don't know the secret key $sk_l$
 
-***Def.*** Comparability: Two different codewords $x$ and $x'$ are said to be comparable if one dominates the other coordinate wise, that is if:
+> **Definition (Comparability).** Two different codewords $x$ and $x'$ are **comparable** if one dominates the other coordinate-wise, i.e., $x_i \le x'_i$ for all $i$ and $x_j < x'_j$ for at least one $j$.
 
-$$
-	x_i \leq x'_i \text{ for all } i \text{ and } x_j \lt x'_j \text{ for at least one } j
-$$
-For example $(1, 2, 3)$ is comparable with $(2,3,4)$ or $(1,2,4)$ but it's incomparable with $(1,2,1)$ or $(1,2,3)$
+For example $(1, 2, 3)$ is comparable with $(2, 3, 4)$ or $(1, 2, 4)$ but it's incomparable with $(1, 2, 1)$ or $(1, 2, 3)$
 The idea is to find an encoding function $IncEnc(P, m, \rho, l)$ that gives **incomparable codewords** from a message $m$. Having incomparable codewords means that the protocol is secure.
 The reason for this is that whenever we get an encoding $(x_1, ..., x_v)$ from a message $m$ we are effectively getting the number of steps to hash on every chain. If there is at least one message $m'$ such that its encoding is **comparable** then we **could** generate a valid signature without knowing the secret key, just by continuing to hash from a known encoding $x$
 
@@ -75,22 +72,22 @@ The reason for this is that whenever we get an encoding $(x_1, ..., x_v)$ from a
 Therefore, to prevent this from being able to happen, one needs to generate an **incomparable encoding** such that producing $x'$ is simply not possible.
 ### Achieving incomparability
 In order to achieve this property and ensure the signature scheme is secure, one needs to propose an encoding that never allows this to happen. Note that we only need **one** hash-chain to have an element that is less than an existing one as that would be enough to prevent any issue from happening. Recall that reversing a single hash (using a secure hash function) is not feasible.
-The easiest way to go about this is to add a new value to the code which we would call a *checksum*. The checksum would basically be $\sum_{i = 1}^v (W_{max} - x_i)$
+The easiest way to go about this is to add a new value to the code which we would call a *checksum*. The checksum can be written as $checksum(x) := \sum_{i = 1}^v (W_{max} - x_i) = v \cdot W_{max} - \sum_i x_i$.
 
-Here $W_{max} = 2^w - 1$ which is the maximum possible value that any $x_i$ could take. Note that this would add more elements to $x$ (increasing the signature size) but would always provide an incomparable encoding because of the fact that $x > x'$ if and only if $x_i \geq x'_i$ for all $i$ and $x_j \gt x'_j$ for at least one $j$
+Let $W_{max} = 2^w - 1$. This is the maximum value any coordinate $x_i$ can take (since $x_i \in \{0, \dots, 2^w - 1\}$). Note that this would add more elements to $x$ (increasing the signature size) but would always provide an incomparable encoding because of the fact that $x'$ dominates $x$ if and only if $x_i \le x'_i$ for all $i$ and $x_j < x'_j$ for at least one $j$.
 
-Hopefully that sounds familiar, it is the definition of comparability we just gave before! Hence, whenever we had an encoding dominating another one, the checksum of the dominating encoding would be less than the other one, making them incomparable, since:
+Hopefully that sounds familiar, it is the definition of comparability we just gave before! Hence, whenever we have an encoding $x'$ dominating $x$, the checksum of $x'$ would be less than the other one, making them incomparable, since:
 
 $$
-v \cdot W_{max} - \sum x'_i \gt v \cdot W_{max} - \sum x_i
+v \cdot W_{max} - \sum_i x'_i \lt v \cdot W_{max} - \sum_i x_i
 $$
-as long as $x > x'$ component-wise.
+as long as $x'$ dominates $x$ component-wise (so $\sum_i x'_i > \sum_i x_i$).
 
 There is a better way to do this which does not increase signature size. It's called Winternitz Target Sum and it consists of simply adding an extra-check to the verification phase: 
 
 - Whenever you get $x$, verify that: $\sum_{i = 1}^v x_i = T$
 
-Intuitively this works because of the same reason as before. Since $T$ is a fixed parameter, then if one were to obtain some $x > x'$ component-wise it means that the sum of its components **will be** greater and therefore will be at least $T + n$ with $n \gt 0$. 
+Intuitively this works because of the same reason as before. Since $T$ is a fixed parameter, then if one were to obtain some $x'$ dominating $x$ component-wise it means that the sum of its components **will be** greater and therefore will be at least $T + n$ with $n \gt 0$. 
 
 This does add more work for the prover, but it's required to guarantee that the scheme is secure.
 
@@ -116,8 +113,8 @@ In order to sign a message $m$ at epoch $ep$ with secret key $sk_{ep}$:
 1. Generate the Merkle Proof $\theta_{ep}$ from $pk_{ep}$ to $pk_R$
 2. Encode the message using an incomparable encoder: $x = \text{IncEnc}(P, m, \rho, ep)$ where $\rho$ is a fresh random value. 
 	- Note that $\text{IncEnc}$ is randomized and _fallible_: the signer keeps sampling new $\rho$ values until the resulting vector fulfills the target-sum condition. This makes signing more expensive but results in cheaper verification.
-3. For each $i$, compute $\sigma_{OTS, i} := H^{x_i}(sk_{ep, i})$
-4. Set $\sigma_{OTS} = (\sigma_{OTS, 1}, ..., \sigma_{OTS, v})$
+3. For each $i$, compute $\sigma_{OTS,i} := H^{x_i}(sk_{ep, i})$
+4. Set $\sigma_{OTS} = (\sigma_{OTS,1}, ..., \sigma_{OTS,v})$
 
 The final signature is:
 $\sigma = (\rho, \sigma_{OTS}, \theta_{ep})$
@@ -127,7 +124,7 @@ Given a public key $(pk_R, P)$, an epoch $ep$, a message $m$ and a signature $\s
 
 1. Recomputes $x = \text{IncEnc}(P, m, \rho, ep)$ from the message $m$ and randomness $\rho$
 2. Checks that $x$ is a valid element in the code (via Winternitz Target Sum)
-3. For each $i$, finish computing the hash-chain: $pk_{ep, i} = H^{2^w - 1 - x_i}(\sigma_{OTS, i})$
+3. For each $i$, finish computing the hash-chain: $pk_{ep, i} = H^{2^w - 1 - x_i}(\sigma_{OTS,i})$
 4. Set $pk_{ep} =(pk_{ep, 1}, ..., pk_{ep, v})$
 
 Finally, the verification only needs to check if $\theta_{ep}$ is the Merkle Path from $pk_{ep}$ to $pk_R$ to be done.
@@ -176,7 +173,7 @@ The follow up paper [_At the Top of the Hypercube_](https://eprint.iacr.org/2025
 
 > How should we choose the codewords $x$ in order to get the best tradeoff between signature size and verification time?
 
-The idea is as follows: Since verifying signatures is what we will have to do in the Verification Algorithm of our proving system, can we make the verification very fast while keeping the signature size small? In other words, could we encode in a way where the signer does most of the work but without requiring us to decrease the number of hash-chain steps $2^w$?
+The idea is as follows: Since verifying signatures is what we will have to do in the Verification Algorithm of our proving system, can we make the verification very fast while keeping the signature size small? In other words, could we encode in a way where the signer does most of the work but without requiring us to decrease the hash-chain length $2^w$ (i.e., reducing $w$)?
 
 The answer is yes! By forcing the encoding to lie in the top layers of the hypercube (very close to the chain ends), we force the signer to do the heavy lifting (hashing many times), while the verifier only needs to compute a few remaining hashes.
 

@@ -17,13 +17,25 @@ const draftTemplate = path.resolve(`./src/templates/draft.js`)
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
-  // Get all markdown blog posts sorted by date
+  // Get all markdown posts and notes sorted by date
   const result = await graphql(`
     {
-      allMarkdownRemark(
+      posts: allMarkdownRemark(
         sort: { frontmatter: { date: ASC } }
         limit: 1000
-        filter: { fields: { slug: { ne: null } } }
+        filter: { fileAbsolutePath: { regex: "/content/blog/" } }
+      ) {
+        nodes {
+          id
+          fields {
+            slug
+          }
+        }
+      }
+      notes: allMarkdownRemark(
+        sort: { frontmatter: { date: ASC } }
+        limit: 1000
+        filter: { fileAbsolutePath: { regex: "/content/notes/" } }
       ) {
         nodes {
           id
@@ -37,13 +49,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   if (result.errors) {
     reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
+      `There was an error loading your markdown content`,
       result.errors
     )
     return
   }
 
-  const posts = result.data.allMarkdownRemark.nodes
+  const posts = result.data.posts.nodes
+  const notes = result.data.notes.nodes
 
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
@@ -61,6 +74,24 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           id: post.id,
           previousPostId,
           nextPostId,
+        },
+      })
+    })
+  }
+
+  // Create note pages
+  if (notes.length > 0) {
+    notes.forEach((note, index) => {
+      const previousNoteId = index === 0 ? null : notes[index - 1].id
+      const nextNoteId = index === notes.length - 1 ? null : notes[index + 1].id
+
+      createPage({
+        path: note.fields.slug,
+        component: blogPost,
+        context: {
+          id: note.id,
+          previousPostId: previousNoteId,
+          nextPostId: nextNoteId,
         },
       })
     })
@@ -112,6 +143,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       // your existing slug logic
       const slug = createFilePath({ node, getNode, basePath: `content/blog` })
       createNodeField({ name: `slug`, node, value: slug })
+    }
+
+    if (source === `notes`) {
+      const slug = createFilePath({ node, getNode, basePath: `content/notes` })
+      createNodeField({ name: `slug`, node, value: `/notes${slug}` })
     }
 
     if (source === `draft`) {

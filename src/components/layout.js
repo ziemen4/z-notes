@@ -54,7 +54,8 @@ export function Layout({ title, children }) {
           {/* desktop nav sits right of the logo */}
           <nav className={`site-nav ${open ? "open" : ""}`}>
             <ul onClick={() => setOpen(false)}>
-              <li><Link to="/"        activeClassName="active">Notes</Link></li>
+              <li><Link to="/"        activeClassName="active">Posts</Link></li>
+              <li><Link to="/notes"   activeClassName="active">Notes</Link></li>
               <li><Link to="/projects" activeClassName="active">Projects</Link></li>
               <li><Link to="/about"   activeClassName="active">About</Link></li>
               <li><Link to="/contact" activeClassName="active">Contact</Link></li>

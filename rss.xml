@@ -1,4 +1,81 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Zk Notes RSS Feed]]></title><description><![CDATA[Notes on Cryptography, AI and other stuff]]></description><link>https://ziemann.me</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 31 Jan 2026 03:31:09 GMT</lastBuildDate><item><title><![CDATA[No title]]></title><link>https://ziemann.menull</link><guid isPermaLink="false">https://ziemann.menull</guid><content:encoded></content:encoded></item><item><title><![CDATA[Lean Ethereum - LeanSig]]></title><description><![CDATA[Special thanks to Thomas for his great feedback and review Introduction Ethereum today relies on BLS signatures for attestations. These are…]]></description><link>https://ziemann.me/leansig/</link><guid isPermaLink="false">https://ziemann.me/leansig/</guid><pubDate>Tue, 20 Jan 2026 09:28:42 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;Special thanks to &lt;a href=&quot;https://x.com/tcoratger/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Thomas&lt;/a&gt; for his great feedback and review&lt;/em&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Zk Notes RSS Feed]]></title><description><![CDATA[Notes on Cryptography, AI and other stuff]]></description><link>https://ziemann.me</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 07 Feb 2026 03:01:06 GMT</lastBuildDate><item><title><![CDATA[No title]]></title><link>https://ziemann.menull</link><guid isPermaLink="false">https://ziemann.menull</guid><content:encoded></content:encoded></item><item><title><![CDATA[Crypto is Dead, Long Live Crypto]]></title><description><![CDATA[Crypto is dead. That is the headline people want right now. You see it everywhere: prices down, volumes down, people leaving. The hype is…]]></description><link>https://ziemann.me/notes/crypto-is-dead/</link><guid isPermaLink="false">https://ziemann.me/notes/crypto-is-dead/</guid><pubDate>Sat, 07 Feb 2026 02:40:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Crypto is dead.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;That is the headline people want right now. You see it everywhere: prices down, volumes down, people leaving. The hype is gone. The easy money is gone.
+And honestly, part of that is correct.&lt;/p&gt;
+&lt;p&gt;A version of crypto is dead: the version built on worthless tokens with no product, no users, and no value. The version that confused speculation for innovation, where launching a token was treated like shipping a company. The version where communities were often just exit liquidity.
+That version needed to die. But we should not confuse the end of a phase with the end of a technology.&lt;/p&gt;
+&lt;h2&gt;What died?&lt;/h2&gt;
+&lt;p&gt;During the last 10 years, we ran a giant global experiment. Some of it was ugly, some of it brilliant and innovative.
+We tried things because we did not yet know what would work. We focused on a rollup-centric roadmap because base-layer scalability was not possible (not without losing what makes a blockchain important). That was not failure; that was engineering under constraints.&lt;/p&gt;
+&lt;p&gt;At the same time, programmable cryptography has accelerated faster than most expected. We thought some breakthroughs were far away, but in fact, they were not. The timeline was unclear, but not the direction.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 514px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/54674b0704f2edfffe602f49352ed33e/dea13/the-verge.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 56.9620253164557%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAABsUlEQVR42pVSyU7jQBT0//8HBy5IzIEDg5gZBCICJaMgRiELiSeLY+ws7X1ru+h6EAgXBC2X+rW7X3W96meFYQgiiiL4vo/NZoP1ev0B/LfDbh0EgUAp9bauqgpW0zQS5HkOz/NQliXqusZnI01TLJdLAXOKokCSJMJh8QCVdbtddDod2LaN+Xwuil8Q7yESJZPJBOPxWHKchYM4jo0ILftCuDtIIt7EW3mIo9YVmqZ+RQOYL8sybNUWKlAIwsBUVcjeGyFL2PePJYTmoKcS/F+XGD/FGCyMZ1H2UnKUY3Q3wb/2A+zeHHlSgDcJIU1lCf1+H71eD47jYLVawfdcXP8d4Lxt4+D4N85uH7HwA3N5hP7dAKdHv/Dz+A8uTq6h/BC7SuVRqIyks9kM0+nUlJsgNOU82C6u7he47NpoP26gklISV8stzgzZj8MTXJ3eIFbpOyEDekJl9JCKM/NabKVK14hzjaTQZq6g60YSdVUji83LhqmZc+NzIx7Sd4vqRqORvFir1cJwOITruuLrdwZbTRQyoGckZStw/i4ZB/uXHWKRlcE+KP29D78GWqW1xjNSj0TvHotSngAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;the-verge.png&quot;
+        title=&quot;&quot;
+        src=&quot;/static/54674b0704f2edfffe602f49352ed33e/dea13/the-verge.png&quot;
+        srcset=&quot;/static/54674b0704f2edfffe602f49352ed33e/c26ae/the-verge.png 158w,
+/static/54674b0704f2edfffe602f49352ed33e/6bdcf/the-verge.png 315w,
+/static/54674b0704f2edfffe602f49352ed33e/dea13/the-verge.png 514w&quot;
+        sizes=&quot;(max-width: 514px) 100vw, 514px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;em&gt;The Verge: SNARKifying Ethereum was always the goal (Source: &lt;a href=&quot;https://x.com/VitalikButerin/status/1588669782471368704&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;tweet&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Now it&apos;s clear: ZK systems, better proving stacks, better execution designs, post-quantum schemes - &lt;a href=&quot;https://leanroadmap.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Lean Ethereum&lt;/a&gt;. The infamous blockchain trilemma is no longer a constraint; it&apos;s an engineering problem with real solutions.
+This was always the bet: not if, but when.&lt;/p&gt;
+&lt;h2&gt;What really happened&lt;/h2&gt;
+&lt;p&gt;If crypto is alive, where is it?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It is in &lt;a href=&quot;https://www.anchorage.com/insights/anchorage-apis-power-visa-crypto-native-settlement&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;payments that settle globally and fast&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;It is in &lt;a href=&quot;https://www.circle.com/multi-chain-usdc/ethereum&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;stablecoins being used as real financial rails&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;It is in &lt;a href=&quot;https://etherscan.io/address/0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;on-chain credit and market structures that can be audited&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;It is in &lt;a href=&quot;https://support.argent.xyz/hc/en-us/articles/360022517432-Does-Argent-have-access-to-my-funds&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;custody models where users can actually own assets through cryptographic keys&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;It is in &lt;a href=&quot;https://docs.uniswap.org/concepts/uniswap-protocol&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;systems where rules are transparent, execution is deterministic, and settlement is programmable&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Crypto is shifting to infrastructure.
+That does not always feel exciting in the short term, because infrastructure rarely looks fancy while it is being built. The internet did not become powerful because dial-up was exciting. It became powerful because the rails got good enough for everything else to be built on top.
+Crypto is going through a similar transition now.&lt;/p&gt;
+&lt;h2&gt;&quot;The old crypto was more fun&quot;&lt;/h2&gt;
+&lt;p&gt;True.
+The old crypto was more chaotic, more experimental, more community-native, more open-ended. Maturity always feels like a loss if your reference point is early-stage.
+But this is what it looks like in every technology cycle. Institutions arrive. Compliance matters. Risk controls matter. Reliability matters.&lt;/p&gt;
+&lt;p&gt;That is not to say that crypto is completely mature; it&apos;s still in its early days, with finance as its primary use case. But crypto entails not only blockchains but also programmable cryptography, which, in my opinion, will play a huge role in the future (i.e., &lt;a href=&quot;https://ziemann.me/ai-crypto/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;AI alignment&lt;/a&gt;, &lt;a href=&quot;https://aztec.network/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;privacy&lt;/a&gt;, &lt;a href=&quot;https://docs.taceo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;trustless solutions&lt;/a&gt;, and &lt;a href=&quot;https://world.org/world-chain&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;identity&lt;/a&gt;).&lt;/p&gt;
+&lt;h2&gt;Decentralization matters more now, not less&lt;/h2&gt;
+&lt;p&gt;There is another misconception: as crypto institutionalizes, decentralization becomes optional.
+It is the opposite.&lt;/p&gt;
+&lt;p&gt;The threat model is getting harder, not easier. State-level actors are active. Organized cybercrime is industrialized. AI agents can already scan, probe, and exploit systems at incredible speed. Identity can be faked. Signals can be manipulated. Trust and privacy are under pressure everywhere.
+In that world, programmable trust is not a niche technology; it is a practical requirement.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We need systems that are open, auditable, and censorship-resistant by design.&lt;/li&gt;
+&lt;li&gt;We need formal verification where it matters most.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ziemen4/zkpoex&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;We need autonomous monitoring and defenses on live contracts.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ziemen4/zkguard&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;We need better cryptographic auth and stronger security primitives end-to-end.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To reach that world, we need scalable, reliable, and neutral blockchains.&lt;/p&gt;
+&lt;h2&gt;What Died, What Was Born&lt;/h2&gt;
+&lt;p&gt;When a technology starts disappearing into the stack, that usually means it&apos;s being adopted.
+So yes, a version of crypto died: empty tokens, attention loops, and the idea that price action alone is product-market fit.
+What is being born is harder and more durable: compliant payment rails, programmable value, cryptographic self-custody, transparent settlement, and verifiable trust in adversarial environments.&lt;/p&gt;
+&lt;p&gt;If you came for another mania, this feels like an ending.
+If you came for the long game, this is the beginning.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Long live crypto.&lt;/strong&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Lean Ethereum - LeanSig]]></title><description><![CDATA[Special thanks to Thomas for his great feedback and review Introduction Ethereum today relies on BLS signatures for attestations. These are…]]></description><link>https://ziemann.me/leansig/</link><guid isPermaLink="false">https://ziemann.me/leansig/</guid><pubDate>Tue, 20 Jan 2026 09:28:42 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;Special thanks to &lt;a href=&quot;https://x.com/tcoratger/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Thomas&lt;/a&gt; for his great feedback and review&lt;/em&gt;&lt;/p&gt;
 &lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Ethereum today relies on BLS signatures for attestations. These are compact, aggregatable and battle-tested, yet they are built on elliptic-curve assumptions which means that they are &lt;strong&gt;not&lt;/strong&gt; post-quantum secure.
 &lt;a href=&quot;https://leanroadmap.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Lean Ethereum&lt;/a&gt; is an experimental roadmap that is aggressively simplifying the base layer of Ethereum. One of its tracks is focused on moving to a post-quantum secure setup. In that world, &lt;a href=&quot;https://eprint.iacr.org/2011/484.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;XMSS&lt;/a&gt; style signatures become one of the main candidates to replace the existing BLS signatures.&lt;/p&gt;

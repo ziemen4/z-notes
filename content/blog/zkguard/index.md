@@ -1,6 +1,8 @@
-## title: "Verifiable Computation as a Protection System for Digital Wallets"
+---  
+title: "Verifiable Computation as a Protection System for Digital Wallets"
 date: "2026-04-19T20:58:42.514Z"
 description: "How to use VC to protect digital wallets with ZKPs"
+---
 
 *Special thanks to [Galexela](https://github.com/Alessandro-Cavaliere) for feedback and review*
 
@@ -18,8 +20,7 @@ In the model implemented by [zkguard](https://github.com/ziemen4/zkguard), the w
 
 This has an important consequence: the private key is no longer the single source of authority. It is one part of a larger authorization relation. The wallet accepts an action only if two things are true at the same time: the signer is legitimate, and the action is policy-compliant.
 
-But we can do better. Once policy becomes first-class, hierarchical wallets emerge naturally. They are also more powerful because each policy can require more than one signature depending on the action. A small transfer might require a single signer, while a governance upgrade or recovery flow might require many.
-
+But we can do better. Once policy becomes first-class, hierarchical wallets emerge naturally. They are also more powerful because each policy can require more than one signature depending on the action. A small transfer might require a single signer, while a governance upgrade or recovery flow might require many. 
 This is much closer to how real institutions think about security. Different actors are assigned distinct roles, and each role can execute different actions. Since these actions carry different risk, they should require different conditions.
 
 ![zkguard-diagram.png](zkguard-diagram.png)
@@ -29,10 +30,7 @@ This is much closer to how real institutions think about security. Different act
 There may be cases where a public policy is acceptable, mainly for transparency. In many realistic settings, however, it leaks operational structure that should not be given to an adversary. A public policy can reveal who the signers are, which destinations are trusted, how upgrades are approved, or whether there are recovery paths, among other things. Even if the policy is sound, exposing it can make attacks easier and allow attackers to reason about how the wallet's operational security works.
 
 Zero-knowledge allows the verifier to learn that the action is compliant with a policy without learning the internal structure of the policy or any other policy in the set. The system enforces rules without advertising them.
-
-Succinctness is also important. If proofs were not succinct, whatever the prover did would have to be recomputed by the verifier. In fact, there are proving systems that allow for constant verification cost, no matter how much work the prover did!
-
-[https://eprint.iacr.org/2016/260.pdf]. Since execution on-chain is generally costly, this makes the scheme practical by keeping proofs small enough to verify efficiently.
+Succinctness is also important. If proofs were not succinct, whatever the prover did would have to be recomputed by the verifier. In fact, there are [proving systems that allow for constant verification cost, no matter how much work the prover did!](https://eprint.iacr.org/2016/260.pdf). Since execution on-chain is generally costly, this makes the scheme practical by keeping proofs small enough to verify efficiently.
 
 The combination of these properties yields a private policy system with public verifiability. It can enforce complex internal rules while exposing only a short cryptographic proof that allows the action to be executed. If the system is built properly, the main weak point moves away from raw secret custody and toward policy quality, proving system correctness, and policy-update governance. This is still a hard problem, but it is much better than the status quo.
 
@@ -40,9 +38,7 @@ The combination of these properties yields a private policy system with public v
 
 For institutions, I believe the answer is already yes.
 
-Today, with good prover hardware and mature proving systems, this model is already practical. Circuit-based systems such as Noir with UltraHonk and Gnark with Groth16 can be advantageous for simple use cases like transfers, issuance, and simple smart contracts. In contexts where operations are high volume and security is critical, additional prover overhead may be worth it.
-
-There is also a broader design space. If proving latency becomes the main bottleneck, one can invest more in proving infrastructure or optimize circuits more aggressively. If local proving is inconvenient, [delegated or distributed proving can help](https://taceo.io/)
+Today, with good prover hardware and mature proving systems, this model is already practical. Circuit-based systems such as Noir with UltraHonk and Gnark with Groth16 can be advantageous for simple use cases like transfers, issuance, and simple smart contracts. In contexts where operations are high volume and security is critical, additional prover overhead may be worth it. There is also a broader design space. If proving latency becomes the main bottleneck, one can invest more in proving infrastructure or optimize circuits more aggressively. If local proving is inconvenient, [delegated or distributed proving can help](https://taceo.io/)
 
 For more complex policies, zkVM-based systems may be slower today, but they offer a much more natural programming model. As zkVM performance keeps improving, they will become a very compelling option.
 

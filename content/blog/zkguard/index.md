@@ -1,5 +1,5 @@
 ---  
-title: "Verifiable Computation as Protection System for Digital Wallets"
+title: "Verifiable Computation as a Protection System for Digital Wallets"
 date: "2026-04-07T20:58:42.514Z"  
 description: "How to use VC to protect digital wallets with ZKPs" 
 ---

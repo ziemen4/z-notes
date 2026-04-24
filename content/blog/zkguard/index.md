@@ -1,14 +1,13 @@
 ---  
-title: "Verifiable Computation as a Protection System for Digital Wallets"
+title: "Verifiable Computation as a Protection System for Blockchain Wallets"
 date: "2026-04-19T20:58:42.514Z"
-description: "How to use VC to protect digital wallets with ZKPs"
+description: "How to use VC to protect blockchain wallets with ZKPs"
 ---
-
 *Special thanks to [Galexela](https://github.com/Alessandro-Cavaliere) for feedback and review*
 
 ## Introduction
 
-Digital wallets are the primary way of interacting with blockchains. They hold assets, govern treasuries, execute upgrades, and increasingly serve as the operating layer through which users, companies, and systems interact with smart contracts. Yet most wallets still rely on signature verification to authorize any action. In many cases, multi-sig wallets are the norm: $m$-of-$n$ schemes exist and provide more security than a single key, but they still allow any action as long as the required signatures are provided.
+Digital asset wallets are the primary way of interacting with blockchains. They hold assets, govern treasuries, execute upgrades, and increasingly serve as the operating layer through which users, companies, and systems interact with smart contracts. Yet most wallets still rely on signature verification to authorize any action. In many cases, multi-sig wallets are the norm: $m$-of-$n$ schemes exist and provide more security than a single key, but they still allow any action as long as the required signatures are provided.
 
 Valid signatures tell us that a key approved a payload. They do not tell us whether the payload should have been allowed in the first place. If a signer is socially engineered, a device is compromised, or someone makes a mistake, the system has no way to distinguish between "the owner signed" and "the owner signed **an allowed action**". For projects, operational wallets, agent-controlled accounts, and high-value users, this is not enough. As attackers grow more sophisticated, these issues lead to incidents such as the [ByBit attack](https://www.csis.org/analysis/bybit-heist-and-future-us-crypto-regulation), the [Drift Protocol Hack](https://www.chainalysis.com/blog/lessons-from-the-drift-hack/), and even events like the [Paxos 300T minting mistake](https://www.cnbc.com/2025/10/16/paypals-crypto-partner-mints-300-trillion-stablecoins-in-technical-error.html). All of these show that operational security and a reliance on simple digital signatures are not enough.
 

@@ -12,7 +12,11 @@ const ProjectsPage = ({ location }) => (
         </a>
         <p className="posts-list__description">
           Developing a system to prevent malicious transactions by using zero knowledge proofs to bind
-          a policy to any action that a wallet performs.
+          a policy to any action that a wallet performs. This work has been accepted to{" "}
+          <a href="https://cyprusconferences.org/issre2026/" target="_blank" rel="noopener noreferrer">
+            ISSRE 2026
+          </a>
+          .
         </p>
       </li>
       <li className="posts-list__item">
@@ -21,9 +25,9 @@ const ProjectsPage = ({ location }) => (
         </a>
         <p className="posts-list__description">
           Developing a framework for proving exploits in a permissionless manner by using zero knowledge
-          proofs. This work has been accepted to{" "}
-          <a href="https://www.sigapp.org/sac/sac2026/" target="_blank" rel="noopener noreferrer">
-            SAC '2026
+          proofs. This work was published to{" "}
+          <a href="https://dl.acm.org/doi/10.1145/3748522.3779811" target="_blank" rel="noopener noreferrer">
+            ACM SAC 2026
           </a>
           .
         </p>

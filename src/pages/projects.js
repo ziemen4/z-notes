@@ -7,6 +7,15 @@ const ProjectsPage = ({ location }) => (
     <h1>Projects</h1>
     <ul className="posts-list">
       <li className="posts-list__item">
+        <a href="https://github.com/ziemen4/proofgate" target="_blank" rel="noopener noreferrer">
+          <h2 className="posts-list__title">ProofGuard</h2>
+        </a>
+        <p className="posts-list__description">
+          Developing a foundation for agent harnesses and guardrail plugins. Agents propose Bend2
+          programs, which are checked against owner-defined laws before a gateway executes their actions.
+        </p>
+      </li>
+      <li className="posts-list__item">
         <a href="https://github.com/ziemen4/zkguard" target="_blank" rel="noopener noreferrer">
           <h2 className="posts-list__title">zkguard</h2>
         </a>

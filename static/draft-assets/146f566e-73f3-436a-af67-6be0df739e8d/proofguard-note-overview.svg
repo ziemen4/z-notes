@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 430" role="img" aria-labelledby="overview-title">
+<title id="overview-title">ProofGuard separates agent planning from controlled execution</title>
+<defs><marker id="overview-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7" fill="none" stroke="#3b6d91" stroke-width="1.5"/></marker></defs>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#253440}.small{font-size:14px;fill:#526777}.label{font-size:12px;letter-spacing:1px;fill:#526777}.title{font-size:22px;font-weight:600}.body{font-size:17px}.mono{font-family:monospace;font-size:15px}.arrow{fill:none;stroke:#3b6d91;stroke-width:1.7;marker-end:url(#overview-arrow)}.box{fill:#fff;stroke:#b8c6ce;stroke-width:1.3}.future{stroke-dasharray:6 5}.rule{fill:#eef4f7;stroke:#3b6d91;stroke-width:1.5}</style>
+<rect width="760" height="430" rx="12" fill="#faf9f6"/>
+<text x="26" y="34" class="label">01 / THE EXECUTION BOUNDARY</text>
+<rect x="350" y="57" width="325" height="66" rx="7" class="box"/>
+<text x="370" y="84" class="body" font-weight="600">Owner-defined laws and permissions</text>
+<text x="370" y="107" class="small">Inputs · destinations · allowed operations</text>
+<path d="M460 124V179" class="arrow"/>
+<rect x="220" y="145" width="515" height="205" rx="10" fill="#eef4f7" stroke="#3b6d91" stroke-width="1.5"/>
+<text x="241" y="172" class="label">PROOFGUARD FOUNDATION</text>
+<rect x="24" y="180" width="164" height="140" rx="8" class="box"/>
+<text x="41" y="209" class="body" font-weight="600">Agent harness</text>
+<text x="41" y="236" class="mono">pi + model</text>
+<text x="41" y="264" class="small">Context and reads</text>
+<text x="41" y="286" class="small">Proposes a plan</text>
+<path d="M188 249H242" class="arrow"/>
+<text x="215" y="236" text-anchor="middle" class="small">plan</text>
+<rect x="242" y="195" width="205" height="132" rx="7" class="box"/>
+<text x="260" y="225" class="body" font-weight="600">Law checker</text>
+<text x="260" y="253" class="small">Bend + BendTT</text>
+<text x="260" y="278" class="small">Check the proposed plan</text>
+<text x="260" y="301" class="small">Prepare exact actions</text>
+<path d="M447 249H493" class="arrow"/>
+<rect x="493" y="195" width="220" height="132" rx="7" class="box"/>
+<text x="511" y="225" class="body" font-weight="600">Write gateway</text>
+<text x="511" y="253" class="small">Bind and reserve authority</text>
+<text x="511" y="278" class="small">Execute accepted actions</text>
+<text x="511" y="301" class="small">Record receipts</text>
+<path d="M344 350V377" class="arrow"/>
+<text x="344" y="403" text-anchor="middle" class="body">Failed check → no writes</text>
+<path d="M603 350V377" class="arrow"/>
+<text x="603" y="403" text-anchor="middle" class="body">Controlled effects</text>
+</svg>

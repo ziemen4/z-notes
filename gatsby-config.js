@@ -24,7 +24,12 @@ module.exports = {
   },
   // pathPrefix: "/z-notes", // Add this line - should match your repository name
   plugins: [
-    "gatsby-plugin-sitemap",
+    {
+      resolve: "gatsby-plugin-sitemap",
+      options: {
+        excludes: ["/draft", "/draft/**"],
+      },
+    },
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -120,7 +125,10 @@ module.exports = {
               })
             },
             query: `{
-              allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
+              allMarkdownRemark(
+                sort: {frontmatter: {date: DESC}}
+                filter: {fields: {slug: {ne: null}}}
+              ) {
                 nodes {
                   excerpt
                   html

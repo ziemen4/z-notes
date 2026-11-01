@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" role="img" aria-labelledby="plugins-title">
+<title id="plugins-title">Guardrail plugins supply the checks in the ProofGuard foundation</title>
+<defs><marker id="plugins-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1L7 4L1 7" fill="none" stroke="#3b6d91" stroke-width="1.5"/></marker></defs>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#253440}.small{font-size:14px;fill:#526777}.label{font-size:12px;letter-spacing:1px;fill:#526777}.title{font-size:22px;font-weight:600}.body{font-size:17px}.mono{font-family:monospace;font-size:15px}.arrow{fill:none;stroke:#3b6d91;stroke-width:1.7;marker-end:url(#plugins-arrow)}.box{fill:#fff;stroke:#b8c6ce;stroke-width:1.3}.future{stroke-dasharray:6 5}.rule{fill:#eef4f7;stroke:#3b6d91;stroke-width:1.5}</style>
+<rect width="760" height="500" rx="12" fill="#faf9f6"/>
+<text x="26" y="34" class="label">02 / GUARDRAILS ARE PLUGINS</text>
+<text x="26" y="65" class="body">The owner chooses what the foundation must check.</text>
+<rect x="26" y="92" width="345" height="158" rx="8" class="rule"/>
+<text x="46" y="120" class="label">IMPLEMENTED</text>
+<text x="46" y="151" class="title">Meijer-inspired</text>
+<text x="46" y="180" class="body">Information-flow laws</text>
+<text x="46" y="208" class="mono">data_safe · flow_safe</text>
+<text x="46" y="232" class="small">Typed workflow + trusted interpreter</text>
+<rect x="389" y="92" width="345" height="158" rx="8" class="box future"/>
+<text x="409" y="120" class="label">POSSIBLE ADAPTER</text>
+<text x="409" y="151" class="title">CARE</text>
+<text x="409" y="180" class="body">Shell-command analysis</text>
+<text x="409" y="208" class="small">Static checks + selective model judgment</text>
+<text x="409" y="232" class="small">Would need its own adapter contract</text>
+<path d="M199 250V279H368V324" class="arrow"/>
+<path d="M561 250V279H392V324" class="arrow future"/>
+<text x="26" y="310" class="small">Owner-approved checks and semantics</text>
+<rect x="26" y="326" width="708" height="115" rx="9" fill="#eef4f7" stroke="#3b6d91" stroke-width="1.5"/>
+<text x="46" y="350" class="label">SAME PROOFGUARD FOUNDATION</text>
+<text x="49" y="390" class="body">Proposed program</text>
+<path d="M203 385H243" class="arrow"/>
+<rect x="251" y="362" width="225" height="57" rx="6" fill="#fff" stroke="#3b6d91"/>
+<text x="364" y="396" text-anchor="middle" class="body" font-weight="600">Apply the plugin's checks</text>
+<path d="M476 385H518" class="arrow"/>
+<text x="533" y="390" class="body">Controlled execution</text>
+<text x="26" y="475" class="small">In the Bend2 path, the laws are the guardrails the program must satisfy.</text>
+</svg>

@@ -875,3 +875,9 @@ site-header {
   color: var(--textNormal);
   opacity: 0.8;
 }
+
+@media (max-width: 640px) {
+  .proofguard-figure {
+    max-width: 440px;
+  }
+}

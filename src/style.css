@@ -846,3 +846,32 @@ site-header {
   margin: 0.5rem 0 1.5rem;
   /* tweak spacing as you like */
 }
+
+
+/* ProofGuard figures use a stacked variant on small screens. */
+.proofguard-figure {
+  width: 100%;
+  max-width: 1120px;
+  margin: 2.5rem auto;
+}
+
+.proofguard-figure picture,
+.proofguard-figure img {
+  display: block;
+  width: 100%;
+}
+
+.proofguard-figure img {
+  height: auto;
+  margin: 0;
+}
+
+.proofguard-figure figcaption {
+  max-width: 85ch;
+  margin: 0.8rem auto 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--textNormal);
+  opacity: 0.8;
+}

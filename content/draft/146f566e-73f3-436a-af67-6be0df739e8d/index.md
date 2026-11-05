@@ -22,7 +22,13 @@ In order to do this we use [pi](https://github.com/earendil-works/pi) as the age
 
 The program acts as the agent’s plan, it is the execution the agent wants to do to fulfill the task. The ProofGuard worker takes this program and gives it to a component we call “The Gateway”, which is the one that can in fact execute the plan. But before doing that it must check that the plan is valid with respect to the Bend laws it has previously defined.
 
-![ProofGuard separates agent planning from controlled execution.](/draft-assets/146f566e-73f3-436a-af67-6be0df739e8d/proofguard-note-overview.svg)
+<figure class="proofguard-figure">
+  <picture>
+    <source media="(max-width: 640px)" srcset="/draft-assets/146f566e-73f3-436a-af67-6be0df739e8d/proofguard-note-overview-mobile.svg" width="440" height="795">
+    <img src="/draft-assets/146f566e-73f3-436a-af67-6be0df739e8d/proofguard-note-overview.svg" alt="ProofGuard separates agent planning from controlled execution." width="1120" height="420" loading="lazy">
+  </picture>
+  <figcaption>Figure 1. The harness proposes a Bend2 program. ProofGuard checks the owner’s laws before the gateway executes its actions. A rejected plan produces no writes.</figcaption>
+</figure>
 
 We chose Bend2 because it allows the agent to focus only on writing the program without having to create a proof for every action it proposes. The backend generates equality proof terms for Bend and the BendTT kernel to check. This automatic path supports concrete laws that reduce during checking.
 
@@ -32,7 +38,13 @@ We define what are commonly known as guardrails (e.g., [CARE](https://arxiv.org/
 
 The owner can choose which plugin and permissions to apply, so we use the same foundation for different applications. I’ll discuss what this could potentially look like in the “What’s next” section if you are interested.
 
-![Guardrail plugins supply checks to the ProofGuard foundation.](/draft-assets/146f566e-73f3-436a-af67-6be0df739e8d/proofguard-note-plugins.svg)
+<figure class="proofguard-figure">
+  <picture>
+    <source media="(max-width: 640px)" srcset="/draft-assets/146f566e-73f3-436a-af67-6be0df739e8d/proofguard-note-plugins-mobile.svg" width="440" height="750">
+    <img src="/draft-assets/146f566e-73f3-436a-af67-6be0df739e8d/proofguard-note-plugins.svg" alt="Guardrail plugins supply checks to the ProofGuard foundation." width="1120" height="515" loading="lazy">
+  </picture>
+  <figcaption>Figure 2. Guardrails supply the checks and semantics used by the same foundation. Meijer is implemented. CARE illustrates a possible future adapter.</figcaption>
+</figure>
 
 ## An example: Meijer’s Mortgage-File Leak
 

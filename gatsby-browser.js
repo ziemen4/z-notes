@@ -5,7 +5,7 @@ import { ThemeProvider } from "./src/components/layout"
 import "@fontsource/merriweather"     /* keep if you still need Merriweather */
 import "./src/normalize.css"
 import "./src/style.css"
-import "prismjs/themes/prism.css"
+import "./src/code.css"
 
 export const wrapRootElement = ({ element }) => (
   <ThemeProvider>{element}</ThemeProvider>

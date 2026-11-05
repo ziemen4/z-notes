@@ -90,7 +90,17 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          `gatsby-remark-prismjs`,
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              languageExtensions: [
+                {
+                  language: "bend",
+                  definition: require("./src/syntax/bend"),
+                },
+              ],
+            },
+          },
         ],
       },
     },

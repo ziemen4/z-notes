@@ -24,8 +24,8 @@ The program acts as the agent’s plan, it is the execution the agent wants to d
 
 <figure class="proofguard-figure">
   <picture>
-    <source media="(max-width: 640px)" srcset="/draft-assets/146f566e-73f3-436a-af67-6be0df739e8d/proofguard-note-overview-mobile.svg" width="440" height="795">
-    <img src="/draft-assets/146f566e-73f3-436a-af67-6be0df739e8d/proofguard-note-overview.svg" alt="ProofGuard separates agent planning from controlled execution." width="1120" height="420" loading="lazy">
+    <source media="(max-width: 640px)" srcset="/draft-assets/146f566e-73f3-436a-af67-6be0df739e8d/proofguard-note-overview-mobile.svg" width="440" height="855">
+    <img src="/draft-assets/146f566e-73f3-436a-af67-6be0df739e8d/proofguard-note-overview.svg" alt="ProofGuard separates agent planning from controlled execution." width="1200" height="435" loading="lazy">
   </picture>
   <figcaption>Figure 1. The harness proposes a Bend2 program. ProofGuard checks the owner’s laws before the gateway executes its actions. A rejected plan produces no writes.</figcaption>
 </figure>
@@ -43,7 +43,7 @@ The owner can choose which plugin and permissions to apply, so we use the same f
     <source media="(max-width: 640px)" srcset="/draft-assets/146f566e-73f3-436a-af67-6be0df739e8d/proofguard-note-plugins-mobile.svg" width="440" height="750">
     <img src="/draft-assets/146f566e-73f3-436a-af67-6be0df739e8d/proofguard-note-plugins.svg" alt="Guardrail plugins supply checks to the ProofGuard foundation." width="1120" height="515" loading="lazy">
   </picture>
-  <figcaption>Figure 2. Guardrails supply the checks and semantics used by the same foundation. Meijer is implemented. CARE illustrates a possible future adapter.</figcaption>
+  <figcaption>Figure 2. Guardrail plugins supply checks and semantics to the ProofGuard pipeline.</figcaption>
 </figure>
 
 ## An example: Meijer’s Mortgage-File Leak

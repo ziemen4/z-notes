@@ -6,7 +6,7 @@ description: "ProofGuard: agent plans checked against owner-defined laws before 
 
 ## Introduction
 
-The promise is that agents are able to make decisions on your behalf and have access to your data, but in practice, it isn’t always so simple: if there is an instruction hidden in a document they read, it could trigger the agent to take an unintended action. This is one of the many issues that can result in an agent losing alignment and it is known as a [prompt injection attack](https://simonwillison.net/2025/Apr/11/camel/).
+The promise is that agents are able to make decisions on your behalf and have access to your data, but in practice, it isn’t always so simple: if there is an instruction hidden in a document they read, it could trigger the agent to take an unintended action.
 
 With this in mind, I’ve been working on a new foundation for how we manage agent harnesses and guardrails: [ProofGuard](https://github.com/ziemen4/proofgate). The idea is to have explicit rules that can define what an agent can execute in a way where it is impossible for the agent to do anything that is not compliant. It consists of three simple sequential actions:
 

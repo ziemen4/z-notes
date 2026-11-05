@@ -6,7 +6,7 @@ description: "ProofGuard: agent plans checked against owner-defined laws before 
 
 ## Introduction
 
-The promise is that agents can access your files and accounts and do everything on your behalf, but it isn’t that simple: if there is an instruction hidden in a document they read, it could trigger the agent to take an unintended action! This is one of the many issues that can result in an agent losing alignment and it is known as a [prompt injection attack](https://simonwillison.net/2025/Apr/11/camel/).
+The promise is that agents are able to make decisions on your behalf and have access to your data, but in practice, it isn’t always so simple: if there is an instruction hidden in a document they read, it could trigger the agent to take an unintended action. This is one of the many issues that can result in an agent losing alignment and it is known as a [prompt injection attack](https://simonwillison.net/2025/Apr/11/camel/).
 
 With this in mind, I’ve been working on a new foundation for how we manage agent harnesses and guardrails: [ProofGuard](https://github.com/ziemen4/proofgate). The idea is to have explicit rules that can define what an agent can execute in a way where it is impossible for the agent to do anything that is not compliant. It consists of three simple sequential actions:
 
@@ -18,27 +18,27 @@ With this in mind, I’ve been working on a new foundation for how we manage age
 
 For this to work, we need to separate the agent from the component that ends up performing the actions. Otherwise, a rejected program would act just as a suggestion but not a real blocker.
 
-In order to do this we use [pi](https://github.com/earendil-works/pi) as the agent harness. The model runs, context is managed and the agent can read within its workspace. When the agent wants to perform an action it doesn’t do it directly, it has no direct write, shell or network tools, we simply allow it to do one thing: write a [Bend2](https://github.com/bendlang/bend) program.
+In order to do this we use [pi](https://github.com/earendil-works/pi) as the agent harness. The model runs, context is managed and the agent can read within its workspace. When the agent wants to perform an action it doesn’t do it directly, it has no shell or network tools, it can only do one thing: write a [Bend2](https://github.com/bendlang/bend) program.
 
-The program acts as the agent’s plan, a proposal for what it wants to do to achieve whatever task it’s doing. The ProofGuard worker takes this program and gives it to the component we call the gateway, which is the one that can in fact execute the plan. But before doing that it must check that the plan is valid with respect to the Bend laws it has defined.
+The program acts as the agent’s plan, it is the execution the agent wants to do to fulfill the task. The ProofGuard worker takes this program and gives it to a component we call “The Gateway”, which is the one that can in fact execute the plan. But before doing that it must check that the plan is valid with respect to the Bend laws it has previously defined.
 
 ![ProofGuard separates agent planning from controlled execution.](/draft-assets/146f566e-73f3-436a-af67-6be0df739e8d/proofguard-note-overview.svg)
 
-We chose Bend2 because this allows the agent to concentrate only on writing the program that solves the task and not on creating a proof for every action it proposes. The backend generates equality proof terms for Bend and the BendTT kernel to check. This automatic path supports concrete laws that reduce during checking.
+We chose Bend2 because it allows the agent to focus only on writing the program without having to create a proof for every action it proposes. The backend generates equality proof terms for Bend and the BendTT kernel to check. This automatic path supports concrete laws that reduce during checking.
 
 ## Guardrails are plugins
 
-We define what are commonly known as guardrails (e.g., [CARE](https://arxiv.org/abs/2607.21642), [NeMo](https://github.com/NVIDIA-NeMo/Guardrails) or [Granite Guardian](https://github.com/ibm-granite/granite-guardian)) as plugins. Plugins are basically packages that determine the laws that the gateway must verify on the plan before every execution. This work is highly influenced by Erik Meijer's [In Code They Think; In Proof We Trust](https://doi.org/10.1145/3806226) which introduces a sort of guardrail itself, so we also ship along with the ProofGuard foundation what I’ve called the “Meijer” plugin (hopefully he’s happy with it!). We will go into a bit more detail on how we use it later.
+We define what are commonly known as guardrails (e.g., [CARE](https://arxiv.org/abs/2607.21642), [NeMo](https://github.com/NVIDIA-NeMo/Guardrails) or [Granite Guardian](https://github.com/ibm-granite/granite-guardian)) as plugins. Plugins are basically packages that determine the laws that the gateway must verify on the plan before every execution. This work is highly influenced by Erik Meijer's [In Code They Think; In Proof We Trust](https://doi.org/10.1145/3806226) in which he introduces this plan-execute separation. We not only ship the ProofGuard foundation but also the “Meijer” plugin where we implement his ideas in a plugin. We will go into a bit more detail on how we use it later.
 
-Each plugin also supplies workflow types, checks and an interpreter for accepted programs. The owner can choose which plugin and permissions to apply, so we use the same foundation for different applications! I’ll discuss what this could potentially look like in the “What’s next” section if you are interested.
+The owner can choose which plugin and permissions to apply, so we use the same foundation for different applications. I’ll discuss what this could potentially look like in the “What’s next” section if you are interested.
 
 ![Guardrail plugins supply checks to the ProofGuard foundation.](/draft-assets/146f566e-73f3-436a-af67-6be0df739e8d/proofguard-note-plugins.svg)
 
-## An example: Meijer’s mortgage-file leak
+## An example: Meijer’s Mortgage-File Leak
 
-To show how ProofGuard works, I’d like to take an example from [Meijer’s article](https://queue.acm.org/detail.cfm?id=3806226). A user asks an assistant to evaluate a loan estimate but a malicious skill adds a synchronization step encoding the document as base64 in order to upload it through Anthropic’s API using the attacker’s account (for more detail see [here](https://queue.acm.org/detail.cfm?id=3806226)). Note that the domain here is trusted (Anthropic) but the recipient is the problem, so a sort of domain blocklist wouldn’t be helpful here.
+To show how ProofGuard works, I’d like to take an example from [Meijer’s article](https://queue.acm.org/detail.cfm?id=3806226). A user asks an assistant to evaluate a loan estimate but a malicious skill adds a synchronization step encoding the document as base64. The idea is to upload it through Anthropic’s API using the attacker’s account (for more detail see [here](https://queue.acm.org/detail.cfm?id=3806226)). Note that the domain here is trusted (Anthropic) but the recipient is the problem, so a sort of domain blocklist wouldn’t be helpful here.
 
-We have encoded Meijer’s ideas as a plugin, more explicitly he has defined an information-flow guardrail based on taint analysis where we can define whether certain files are private or public, so we can determine if some private data is being leaked.
+We have encoded Meijer’s ideas as a plugin, more explicitly, he has defined an information-flow guardrail based on taint analysis where we can define whether certain files are private or public, so we can determine if some private data is being leaked.
 
 In Bend2, we define this as something Private{} and the unauthorized external destination as Public{}. The proposed program is:
 
@@ -53,7 +53,7 @@ def plan():
   Write{First{}, upload_payload()}
 ```
 
-The function  upload_payload encodes the document, and plan asks to write the result to that destination. 
+The function upload_payload encodes the document, and plan() asks to write the result to that destination.
 
 The plugin requires this law:
 
@@ -78,7 +78,7 @@ Basically any guardrail we can express as a checkable Bend law over a supported 
 
 Some interesting directions to improve ProofGuard could look into proving that an action was compliant. Using ZKPs this can even be done without revealing private data. [ICME’s PreFlight](https://docs.icme.io/) is a useful reference here since they do something similar.
 
-A further step would be to maintain shared state in the gateway. Right now our approach is good for single actions or tasks, but not for multi-step tasks where there may be side-effects that are stateful. A good example is something like having the agent do an action that has some allowance, if there is no state then its allowance is always empty to start with. With statefulness we would end up giving the agent the information of how much allowance is left and storing how it’s been used. This is a harder problem but I believe it’s somewhat feasible.
+A further step would be to maintain shared state in the gateway. Right now our approach is good for single actions or tasks, but not for multi-step tasks where there may be side-effects that are stateful. A good example is something such as having the agent do an action that has some allowance, if there is no state then its allowance is always empty to start with. With statefulness we would end up giving the agent the information about how much allowance is left and storing how it’s been used. This is a harder problem but I believe it’s somewhat feasible.
 
 But the application I want to build next is a secure agentic wallet using [ZKGuard](https://ziemann.me/zkguard/). This previous work has already shown how it could constrain the actions one can take on-chain. If we are able to prove that certain laws have been followed by the agent, that may be enough for the wallet to authorize those on-chain transactions. We need to make a connection between the checked program and the contract that actually controls the funds to do this, but it could allow agents to be trusted with funds without a human in the loop!
 

@@ -84,6 +84,8 @@ required law → No == Yes
 
 This will fail and the proposal is rejected before anything is executed. That’s the general idea, if you can define a guardrail as Bend2 laws you can constrain what the agent can do and prevent it from doing unintended actions.
 
+I think this could be very useful for automated workflows where we cannot afford to have the agent take actions outside the task it was given. For instance, we may want an agent to process payments, but only from a certain account and within a defined allowance. If we can express these requirements and the permitted side effects as Bend laws, we can check the program before allowing it to execute. We still have to define the rules properly, but for tasks where those rules are clear, this could let us automate work that we would otherwise be uncomfortable giving to an agent without reviewing every action ourselves.
+
 ## What's next
 
 Basically any guardrail we can express as a checkable Bend law over a supported workflow can become a condition. Deciding which rules to include is still up to the user, and this modular approach allows users to constrain the agent’s behaviour based on the criticality of its actions.

@@ -1,6 +1,6 @@
 ---
 title: "ProofGuard: Checking what AI agents are allowed to do"
-date: "2026-11-01T00:00:00.000Z"
+date: "2026-11-09T00:00:00.000Z"
 description: "ProofGuard: agent plans checked against owner-defined laws before execution."
 ---
 
@@ -36,7 +36,7 @@ We chose Bend2 because it allows the agent to focus only on writing the program 
 
 We define guardrails as plugins, with [CARE](https://arxiv.org/abs/2607.21642), [NeMo](https://github.com/NVIDIA-NeMo/Guardrails) or [Granite Guardian](https://github.com/ibm-granite/granite-guardian) as possible future integrations. Plugins are basically packages that determine the checks that the gateway must apply to the plan before every execution. This work is highly influenced by Erik Meijer's [In Code They Think; In Proof We Trust](https://doi.org/10.1145/3806226), in which he introduces this plan-execute separation. We not only ship the ProofGuard foundation but also the “Meijer” plugin where we implement his ideas in a plugin. We will go into a bit more detail on how we use it later.
 
-The owner can choose which plugin and permissions to apply, so we use the same foundation for different applications. I’ll discuss what this could potentially look like in the “What’s next” section if you are interested.
+The owner can choose which plugin and permissions to apply, so we use the same foundation for different applications. I’ll discuss what this could potentially look like in the [“What’s next” section](#whats-next).
 
 <figure class="proofguard-figure">
   <picture>
@@ -90,7 +90,7 @@ Today, the only actions a program can perform are writes to files that the owner
 
 The next step is to add HTTP requests and command execution, with the owner defining which endpoints and commands are available and plugins checking how the agent uses them. Those permissions need to be chosen carefully: allowing an unrestricted shell would give the agent unrestricted command execution. We also want the agent to be able to use the results in a later proposal. Right now, the whole batch is prepared before any actions run, so reacting to a response or command output would require multi-round sessions.
 
-## What's next
+<h2 id="whats-next">What's next</h2>
 
 Basically, any guardrail we can express as a checkable Bend law over a supported workflow can become a condition. Deciding which rules to include is still up to the user, and this modular approach allows users to constrain the agent’s behaviour based on the criticality of its actions.
 

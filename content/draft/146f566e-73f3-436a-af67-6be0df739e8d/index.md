@@ -8,7 +8,7 @@ description: "ProofGuard: agent plans checked against owner-defined laws before 
 
 The promise is that agents are able to make decisions on your behalf and have access to your data, but in practice, it isn’t always so simple: if there is an instruction hidden in a document they read, it could trigger the agent to take an unintended action.
 
-With this in mind, I’ve been working on a new foundation for how we manage agent harnesses and guardrails: [ProofGuard](https://github.com/ziemen4/proofgate). The idea is to have explicit rules that define what an agent can execute, so the gateway only executes actions that are compliant with those rules. It consists of three simple sequential actions:
+With this in mind, I’ve been working on a new foundation for how we manage agent harnesses and guardrails: [ProofGuard](https://github.com/ziemen4/proofguard). The idea is to have explicit rules that define what an agent can execute, so the gateway only executes actions that are compliant with those rules. It consists of three simple sequential actions:
 
 1. The agent writes a program describing what it plans to do.
 2. An independent gateway checks whether that plan satisfies the predetermined rules.

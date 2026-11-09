@@ -7,7 +7,7 @@ const ProjectsPage = ({ location }) => (
     <h1>Projects</h1>
     <ul className="posts-list">
       <li className="posts-list__item">
-        <a href="https://github.com/ziemen4/proofgate" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/ziemen4/proofguard" target="_blank" rel="noopener noreferrer">
           <h2 className="posts-list__title">ProofGuard</h2>
         </a>
         <p className="posts-list__description">

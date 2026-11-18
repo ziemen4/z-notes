@@ -25,7 +25,10 @@ const ProjectsPage = ({ location }) => (
           <a href="https://cyprusconferences.org/issre2026/" target="_blank" rel="noopener noreferrer">
             ISSRE 2026
           </a>
-          .
+          .{" "}
+          <a href="https://eden.dei.uc.pt/~cnl/papers/2026-issre-zkguard.pdf" target="_blank" rel="noopener noreferrer">
+            Paper (PDF)
+          </a>
         </p>
       </li>
       <li className="posts-list__item">

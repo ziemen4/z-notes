@@ -21,14 +21,11 @@ const ProjectsPage = ({ location }) => (
         </a>
         <p className="posts-list__description">
           Developing a system to prevent malicious transactions by using zero knowledge proofs to bind
-          a policy to any action that a wallet performs. This work has been accepted to{" "}
-          <a href="https://cyprusconferences.org/issre2026/" target="_blank" rel="noopener noreferrer">
+          a policy to any action that a wallet performs. This work was published in{" "}
+          <a href="https://eden.dei.uc.pt/~cnl/papers/2026-issre-zkguard.pdf" target="_blank" rel="noopener noreferrer">
             ISSRE 2026
           </a>
-          .{" "}
-          <a href="https://eden.dei.uc.pt/~cnl/papers/2026-issre-zkguard.pdf" target="_blank" rel="noopener noreferrer">
-            Paper (PDF)
-          </a>
+          .
         </p>
       </li>
       <li className="posts-list__item">
@@ -37,7 +34,7 @@ const ProjectsPage = ({ location }) => (
         </a>
         <p className="posts-list__description">
           Developing a framework for proving exploits in a permissionless manner by using zero knowledge
-          proofs. This work was published to{" "}
+          proofs. This work was published in{" "}
           <a href="https://dl.acm.org/doi/10.1145/3748522.3779811" target="_blank" rel="noopener noreferrer">
             ACM SAC 2026
           </a>
